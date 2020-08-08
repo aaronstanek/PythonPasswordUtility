@@ -15,7 +15,11 @@ def SHA512(bytes_in):
 def time_hash():
     # a hash based on the current time
     t = time.time()
-    t = str(t)
+    t = "{:1.20f}".format(t)
+    # include 20 decimal points of the time
+    # this will include sub-precision garbage
+    # as no reasonable computer can measure
+    # durations less than 100 yoctoseconds
     t = t.encode("UTF-8")
     t = SHA512(t)
     return t
