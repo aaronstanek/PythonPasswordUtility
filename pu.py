@@ -1,10 +1,11 @@
 import sys
-import hashlib
-import secrets
-import time
 
 if sys.version_info.major != 3:
     raise Exception("Python Password Utility has only been tested on Python version 3. Behavior on over versions is not guaranteed.")
+
+import hashlib
+import secrets
+import time
 
 def SHA2_512(bytes_in):
     # bytes_in is a bytes object
