@@ -44,18 +44,23 @@ def generate_password(length,random_seed,valid_chars):
     # password, uses ascii codes
     # SHA512 has an output size of 32 bytes
     garbage = random_seed
+    front_pad = [
+        bytes([secrets.randbelow(80)]),
+        bytes([80+secrets.randbelow(80)]),
+        bytes([160+secrets.randbelow(80)])
+        ]
     for i in range(2 + secrets.randbelow(3)):
-        garbage = SHA512( random_seed + garbage + secrets.token_bytes(32) + time_hash() )
+        garbage = SHA512( front_pad[0] + random_seed + garbage + secrets.token_bytes(32) + time_hash() )
     # garbage is a bytes object
     # predicting its value at this point in the program should be
     # nearly impossible
     password = [] # store it as a list of ascci values, convert to a string later
     while len(password) < length:
         # update garbage
-        garbage = SHA512( random_seed + garbage + time_hash() + secrets.token_bytes(32) )
+        garbage = SHA512( front_pad[1] + random_seed + garbage + time_hash() + secrets.token_bytes(32) )
         # use garbage to generate another sequence of byte which will not
         # have any effect on future values of garbage
-        candidate = SHA512( secrets.token_bytes(32) + time_hash() + garbage )
+        candidate = SHA512( front_pad[2] + secrets.token_bytes(32) + time_hash() + garbage )
         # select a single value from that string of bytes
         value = candidate[secrets.randbelow(len(candidate))]
         # predicting value is very very difficult
