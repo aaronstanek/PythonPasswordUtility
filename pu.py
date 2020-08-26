@@ -7,32 +7,23 @@ import hashlib
 import secrets
 import time
 
-def SHA2_512(bytes_in):
+def SHA512(bytes_in):
     # bytes_in is a bytes object
     # returns a bytes object which is
     # the hash of bytes_in
-    return hashlib.sha512(bytes_in).digest()
-
-def SHA3_512(bytes_in):
-    # bytes_in is a bytes object
-    # returns a bytes object which is
-    # the hash of bytes_in
-    return hashlib.sha3_512(bytes_in).digest()
+    return SHA512.func(bytes_in).digest()
 
 # try to use SHA-3 if possible
 
-def has_SHA3():
-    # returns True if SHA-3 is available
-    # returns False otherwise
-    try:
-        hashlib.sha3_512
-        # if that didn't throw an exception
-        # then we can use SHA-3
-        return True
-    except:
-        return False
-
-SHA512 = SHA3_512 if has_SHA3() else SHA2_512
+try:
+    SHA512.func = hashlib.sha3_512
+    # if SHA-3 is not supported
+    # then the line above will throw
+    # an exception
+    SHA512.number = 3
+except:
+    SHA512.func = hashlib.sha512
+    SHA512.number = 2
 
 def time_hash():
     # a hash based on the current time
