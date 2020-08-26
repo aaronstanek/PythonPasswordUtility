@@ -42,7 +42,7 @@ def generate_password(length,random_seed,valid_chars):
     # valid_chars is a set(int)
     # it indicates which characters are allowed to be in the
     # password, uses ascii codes
-    # SHA512 has an output size of 32 bytes
+    # SHA512 has an output size of 64 bytes
     garbage = random_seed
     front_pad = [
         bytes([secrets.randbelow(80)]),
