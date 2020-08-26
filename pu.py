@@ -94,6 +94,10 @@ def generate_password(length,random_seed,valid_chars):
     return password
 
 def load_command_line_parameters():
+    if len(sys.argv) > 1:
+        if (sys.argv[1] == "-hash"):
+            print("Using SHA-"+str(SHA512.number)+" 512")
+            exit(0)
     if len(sys.argv) < 3:
         raise ValueError("not enough command line parameters")
     char_sets = sys.argv[1]
