@@ -83,3 +83,17 @@ python3 pu.py n 4
 python3 pu.py cps 9
 >,T^ )|"A
 ```
+
+## Hashing Algorithms
+
+This module implements a cryptographic pseudo-random
+number generator based on
+the SHA family of hashing algorithms.
+
+This module is currently configured to use either
+SHA-2 512 or SHA-3 512, with a preference for the latter.
+
+To determine which algorithm is being used:
+```
+python3 pu.py -hash
+```
