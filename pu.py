@@ -6,11 +6,32 @@ import time
 if sys.version_info.major != 3:
     raise Exception("Python Password Utility has only been tested on Python version 3. Behavior on over versions is not guaranteed.")
 
-def SHA512(bytes_in):
+def SHA2_512(bytes_in):
     # bytes_in is a bytes object
     # returns a bytes object which is
     # the hash of bytes_in
     return hashlib.sha512(bytes_in).digest()
+
+def SHA3_512(bytes_in):
+    # bytes_in is a bytes object
+    # returns a bytes object which is
+    # the hash of bytes_in
+    return hashlib.sha3_512(bytes_in).digest()
+
+# try to use SHA-3 if possible
+
+def has_SHA3():
+    # returns True if SHA-3 is available
+    # returns False otherwise
+    try:
+        hashlib.sha3_512
+        # if that didn't throw an exception
+        # then we can use SHA-3
+        return True
+    except:
+        return False
+
+SHA512 = SHA3_512 if has_SHA3() else SHA2_512
 
 def time_hash():
     # a hash based on the current time
