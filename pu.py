@@ -68,7 +68,7 @@ def generate_password(length,random_seed,valid_chars):
     # SHA512 has an output size of 64 bytes
     garbage = SHA512( b'initialize:' + random_seed )
     counter = UniqueCounter()
-    for i in range(2 + secrets.randbelow(3)):
+    for i in range(3):
         garbage = SHA512( b'prefix:' + counter() + garbage + time_hash() + secrets.token_bytes(64) + random_seed )
     # garbage is a bytes object
     # predicting its value at this point in the program should be
