@@ -42,7 +42,18 @@ Character set shorthands:
 - `z` -> `clnp`, all the characters, except spaces
 - `zr` -> `clnr`, all the characters, except spaces, and those which might be banned on some platforms
 
-Shorthands cannot be used in conjunction with individual sets.
+Individual characters my be included with `i` or excluded with `e`. Example:
+
+`nci;de74M` will include numerals, capital letters, `;`, and `d`. It will exclude `7`, `4`, and `M`.
+
+To include/exclude lowercase `i` or `e`, prefix them with `..`. Example:
+
+`le..in` will include lowercase letters, but will exclude lowercase `i` and `n`.
+
+`pi..i..e` will include punctuation, `i`, and `e`.
+
+Some characters may need to be enclosed in parenthesis or prefixed with an escape backslash.
+See: [https://www.w3schools.com/python/gloss_python_escape_characters.asp](https://www.w3schools.com/python/gloss_python_escape_characters.asp)
 
 ### Password length
 
@@ -82,6 +93,11 @@ python3 pu.py n 4
 ```
 python3 pu.py cps 9
 >,T^ )|"A
+```
+
+```
+python3 pu.py niabcd..ef 20 jito firoj43rfneiffk3k
+58480ddb2dc6a37be278
 ```
 
 ## Hashing Algorithms
