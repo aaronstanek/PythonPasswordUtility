@@ -15,10 +15,10 @@ try:
     # then the line above will throw
     # an exception
     SHA512 = lambda x : hashlib.sha3_512(x).digest()
-    SHA512.number = 3
+    SHA512_number = 3
 except:
     SHA512 = lambda x : hashlib.sha512(x).digest()
-    SHA512.number = 2
+    SHA512_number = 2
 
 class UniqueCounter(object):
     def __init__(self):
@@ -194,7 +194,7 @@ def generate_password_resolve_charstring(s):
 def load_command_line_parameters():
     if len(sys.argv) > 1:
         if (sys.argv[1] == "-hash"):
-            print("Using SHA-"+str(SHA512.number)+" 512")
+            print("Using SHA-"+str(SHA512_number)+" 512")
             exit(0)
     if len(sys.argv) < 3:
         raise ValueError("not enough command line parameters")
