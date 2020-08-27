@@ -99,6 +99,91 @@ def generate_password(length,random_seed,valid_chars):
     password = bytes(password).decode("UTF-8")
     return password
 
+generate_password_character_ranges = {
+    "c": list(range(65,91)),
+    "l": list(range(97,123)),
+    "p": list(map(ord,[
+        "`","~","!","@","#",
+        "$","%","^","&","*",
+        "(",")","-","_","=",
+        "+","[","{","]","}",
+        "\\","|",";",":","\'",
+        "\"",",","<",".",">",
+        "/","?"
+        ])),
+    "r": list(map(ord,[
+        "!","@","#","$","%",
+        "&","*","(",")","-",
+        "_","+","[","{","]",
+        "}",";",":",",",".",
+        "?"
+        ]))
+}
+
+generate_password_character_ranges["u"] = generate_password_character_ranges["c"]
+
+def generate_password_resolve_charstring(s):
+    # if a string is passed as valid_chars to
+    # generate_password, it will need to be
+    # resolved to a set
+    # first expand shorthands
+    se = ""
+    for i in range(len(s)):
+        if s[i] == "i" or s[i] == "e":
+            se += s[i:]
+            break
+        if s[i] == "a":
+            if i == len(s) - 1:
+                se += "clnps"
+            elif s[i+1] == "r":
+                se += "clnrs"
+            else:
+                se += "clnps"
+        elif s[i] == "z":
+            if i == len(s) - 1:
+                se += "clnp"
+            elif s[i+1] == "r":
+                se += "clnr"
+            else:
+                se += "clnp"
+        elif s[i] == "r":
+            if i == 0:
+                raise ValueError("valid_chars string cannot start with \"r\"")
+            if s[i-1] != "a" or s[i-1] != "z":
+                raise ValueError("valid_chars \"r\" can only appear after \"a\" or \"z\"")
+        else:
+            raise ValueError("valid_chars unexpected character")
+    mode = "s"
+    # s -> sets
+    # i -> include individual characters
+    # e -> exclude individual characters
+    i = []
+    e = []
+    for c in se:
+        if c == "i" or c == "e":
+            mode = c
+            continue
+        if mode == "s":
+            # we have already checked that the character is valid
+            i += generate_password_character_ranges[c]
+        elif mode == "i":
+            value = ord(c)
+            # must be ASCII printable
+            if (value < 32 or value > 127):
+                raise ValueError("valid_chars must be ASCII printable")
+            i.append(value)
+        else:
+            value = ord(c)
+            # must be ASCII printable
+            if (value < 32 or value > 127):
+                raise ValueError("valid_chars must be ASCII printable")
+            e.append(value)
+    # now create a set
+    output = set(i)
+    for n in e:
+        output.discard(n)
+    return output
+
 def load_command_line_parameters():
     if len(sys.argv) > 1:
         if (sys.argv[1] == "-hash"):
