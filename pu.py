@@ -159,31 +159,23 @@ def generate_password_resolve_charstring(s):
                 raise ValueError("valid_chars \"r\" can only appear after \"a\" or \"z\"")
         else:
             raise ValueError("valid_chars unexpected character")
-    mode = "s"
-    # s -> sets
-    # i -> include individual characters
-    # e -> exclude individual characters
+    active_array = None
     i = []
     e = []
     for c in se:
-        if c == "i" or c == "e":
-            mode = c
-            continue
-        if mode == "s":
+        if c == "i":
+            active_array = i
+        elif c == "e":
+            active_array = e
+        elif active_array is None:
             # we have already checked that the character is valid
             i += generate_password_character_ranges[c]
-        elif mode == "i":
-            value = ord(c)
-            # must be ASCII printable
-            if (value < 32 or value > 127):
-                raise ValueError("valid_chars must be ASCII printable")
-            i.append(value)
         else:
             value = ord(c)
             # must be ASCII printable
             if (value < 32 or value > 127):
                 raise ValueError("valid_chars must be ASCII printable")
-            e.append(value)
+            active_array.append(value)
     # now create a set
     output = set(i)
     for n in e:
