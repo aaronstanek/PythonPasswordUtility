@@ -162,7 +162,21 @@ def generate_password_resolve_charstring(s):
     active_array = None
     i = []
     e = []
-    for c in se:
+    ignore_char = 0
+    for index in range(len(se)):
+        if ignore_char > 0:
+            ignore_char -= 1
+            continue
+        c = se[index]
+        if len(se) - index >= 3:
+            if se[index] == "." and se[index+1] == ".":
+                value = ord(se[index+2])
+                # must be ASCII printable
+                if (value < 32 or value > 127):
+                    raise ValueError("valid_chars must be ASCII printable")
+                active_array.append(value)
+                ignore_char = 2
+                continue
         if c == "i":
             active_array = i
         elif c == "e":
