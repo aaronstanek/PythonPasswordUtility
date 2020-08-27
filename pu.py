@@ -28,6 +28,8 @@ except:
 class UniqueCounter(object):
     def __init__(self):
         self.n = 0
+        for i in range(16):
+            self.n = (self.n*256) + secrets.randbelow(256)
     def __call__(self):
         s = str(self.n) + ":"
         self.n += 1
