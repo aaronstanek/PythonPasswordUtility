@@ -25,6 +25,14 @@ except:
     SHA512.func = hashlib.sha512
     SHA512.number = 2
 
+class UniqueCounter(object):
+    def __init__(self):
+        self.n = 0
+    def __call__(self):
+        s = str(self.n) + ":"
+        self.n += 1
+        return s.encode("UTF-8")
+
 def time_hash():
     # a hash based on the current time
     t = time.time()
@@ -57,23 +65,19 @@ def generate_password(length,random_seed,valid_chars):
     # password, uses ascii codes
     # SHA512 has an output size of 64 bytes
     garbage = random_seed
-    front_pad = [
-        bytes([secrets.randbelow(80)]),
-        bytes([80+secrets.randbelow(80)]),
-        bytes([160+secrets.randbelow(80)])
-        ]
+    counter = UniqueCounter()
     for i in range(2 + secrets.randbelow(3)):
-        garbage = SHA512( front_pad[0] + random_seed + garbage + secrets.token_bytes(32) + time_hash() )
+        garbage = SHA512( counter() + random_seed + garbage + secrets.token_bytes(32) + time_hash() )
     # garbage is a bytes object
     # predicting its value at this point in the program should be
     # nearly impossible
     password = [] # store it as a list of ascci values, convert to a string later
     while len(password) < length:
         # update garbage
-        garbage = SHA512( front_pad[1] + random_seed + garbage + time_hash() + secrets.token_bytes(32) )
+        garbage = SHA512( counter() + random_seed + garbage + time_hash() + secrets.token_bytes(32) )
         # use garbage to generate another sequence of byte which will not
         # have any effect on future values of garbage
-        candidate = SHA512( front_pad[2] + secrets.token_bytes(32) + time_hash() + garbage )
+        candidate = SHA512( counter() + secrets.token_bytes(32) + time_hash() + garbage )
         # select a single value from that string of bytes
         value = candidate[secrets.randbelow(len(candidate))]
         # predicting value is very very difficult
