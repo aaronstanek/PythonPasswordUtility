@@ -104,6 +104,7 @@ def generate_password(length,random_seed,valid_chars):
 generate_password_character_ranges = {
     "c": list(range(65,91)),
     "l": list(range(97,123)),
+    "n": list(range(48,58)),
     "p": list(map(ord,[
         "`","~","!","@","#",
         "$","%","^","&","*",
@@ -119,7 +120,8 @@ generate_password_character_ranges = {
         "_","+","[","{","]",
         "}",";",":",",",".",
         "?"
-        ]))
+        ])),
+    "s": [32]
 }
 
 generate_password_character_ranges["u"] = generate_password_character_ranges["c"]
@@ -134,7 +136,9 @@ def generate_password_resolve_charstring(s):
         if s[i] == "i" or s[i] == "e":
             se += s[i:]
             break
-        if s[i] == "a":
+        if s[i] in generate_password_character_ranges:
+            se += s[i]
+        elif s[i] == "a":
             if i == len(s) - 1:
                 se += "clnps"
             elif s[i+1] == "r":
@@ -193,13 +197,13 @@ def load_command_line_parameters():
             exit(0)
     if len(sys.argv) < 3:
         raise ValueError("not enough command line parameters")
-    char_sets = sys.argv[1]
+    valid_chars = sys.argv[1]
     try:
         length = int(sys.argv[2])
     except:
         raise TypeError("second command line argument should be an integer")
     random_seed = str(sys.argv).encode("UTF-8")
-    return char_sets, length, random_seed
+    return valid_chars, length, random_seed
 
 def determine_valid_chars(char_sets):
     # translate shorthand codes
@@ -254,8 +258,7 @@ def determine_valid_chars(char_sets):
     return valid_chars
 
 def main():
-    char_sets, length, random_seed = load_command_line_parameters()
-    valid_chars = determine_valid_chars(char_sets)
+    valid_chars, length, random_seed = load_command_line_parameters()
     password = generate_password(length, random_seed, valid_chars)
     print(password)
 
