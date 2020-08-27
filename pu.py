@@ -7,22 +7,17 @@ import hashlib
 import secrets
 import time
 
-def SHA512(bytes_in):
-    # bytes_in is a bytes object
-    # returns a bytes object which is
-    # the hash of bytes_in
-    return SHA512.func(bytes_in).digest()
-
 # try to use SHA-3 if possible
 
 try:
-    SHA512.func = hashlib.sha3_512
+    hashlib.sha3_512
     # if SHA-3 is not supported
     # then the line above will throw
     # an exception
+    SHA512 = lambda x : hashlib.sha3_512(x).digest()
     SHA512.number = 3
 except:
-    SHA512.func = hashlib.sha512
+    SHA512 = lambda x : hashlib.sha512(x).digest()
     SHA512.number = 2
 
 class UniqueCounter(object):
