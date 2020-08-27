@@ -57,7 +57,9 @@ def generate_password(length,random_seed,valid_chars):
     if len(random_seed) < 1:
         raise ValueError("random_seed has minimum length 1")
     if type(valid_chars) != set:
-        raise TypeError("valid_chars must be set")
+        if type(valid_chars) != str:
+            raise TypeError("valid_chars must be set or str")
+        valid_chars = generate_password_resolve_charstring(valid_chars)
     if len(valid_chars) < 1:
         raise ValueError("valid_chars has minimum size 1")
     # length is a nonzero integer
