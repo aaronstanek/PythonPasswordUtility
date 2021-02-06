@@ -57,6 +57,11 @@ def generate_password(length,key,valid_chars):
         valid_chars = generate_password_resolve_charstring(valid_chars)
     if len(valid_chars) < 1:
         raise ValueError("valid_chars has minimum size 1")
+    for value in valid_chars:
+        if type(value) != int:
+            raise ValueError("valid_chars set may only contain type int")
+        if value < 32 or value > 126:
+            raise ValueError("valid_chars set may only contain values 32 to 126 inclusive")
     # length is a nonzero integer
     # key is a bytes object
     # valid_chars is a set(int)
