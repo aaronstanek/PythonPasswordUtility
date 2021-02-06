@@ -42,15 +42,15 @@ def time_hash():
     t = SHA512(t)
     return t
 
-def generate_password(length,random_seed,valid_chars):
+def generate_password(length,key,valid_chars):
     if type(length) != int:
         raise TypeError("length must be int")
     if length < 0:
         raise ValueError("length must be nonnegative")
-    if type(random_seed) != bytes:
-        raise TypeError("random_seed must be bytes")
-    if len(random_seed) < 1:
-        raise ValueError("random_seed has minimum length 1")
+    if type(key) != bytes:
+        raise TypeError("key must be bytes")
+    if len(key) < 1:
+        raise ValueError("key has minimum length 1")
     if type(valid_chars) != set:
         if type(valid_chars) != str:
             raise TypeError("valid_chars must be set or str")
@@ -58,22 +58,22 @@ def generate_password(length,random_seed,valid_chars):
     if len(valid_chars) < 1:
         raise ValueError("valid_chars has minimum size 1")
     # length is a nonzero integer
-    # random_seed is a bytes object
+    # key is a bytes object
     # valid_chars is a set(int)
     # it indicates which characters are allowed to be in the
     # password, uses ascii codes
     # SHA512 has an output size of 64 bytes
-    garbage = SHA512( b'initialize:' + random_seed )
+    garbage = SHA512( b'initialize:' + key )
     counter = UniqueCounter()
     for i in range(3):
-        garbage = SHA512( b'prefix:' + counter() + garbage + time_hash() + secrets.token_bytes(64) + random_seed )
+        garbage = SHA512( b'prefix:' + counter() + garbage + time_hash() + secrets.token_bytes(64) + key )
     # garbage is a bytes object
     # predicting its value at this point in the program should be
     # nearly impossible
     password = [] # store it as a list of ascci values, convert to a string later
     while len(password) < length:
         # update garbage
-        garbage = SHA512( b'step:' + counter() + garbage + time_hash() + secrets.token_bytes(64) + random_seed )
+        garbage = SHA512( b'step:' + counter() + garbage + time_hash() + secrets.token_bytes(64) + key )
         # use garbage to generate another sequence of byte which will not
         # have any effect on future values of garbage
         candidate = SHA512( b'output:' + counter() + garbage + time_hash() + secrets.token_bytes(64) )
@@ -203,12 +203,12 @@ def load_command_line_parameters():
         length = int(sys.argv[2])
     except:
         raise TypeError("second command line argument should be an integer")
-    random_seed = str(sys.argv).encode("UTF-8")
-    return valid_chars, length, random_seed
+    key = str(sys.argv).encode("UTF-8")
+    return valid_chars, length, key
 
 def main():
-    valid_chars, length, random_seed = load_command_line_parameters()
-    password = generate_password(length, random_seed, valid_chars)
+    valid_chars, length, key = load_command_line_parameters()
+    password = generate_password(length, key, valid_chars)
     print(password)
 
 if __name__ == "__main__":

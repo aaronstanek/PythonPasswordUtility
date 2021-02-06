@@ -63,7 +63,7 @@ The password length can be any nonnegative integer.
 
 Hitting a bunch of random keys after the password length is encouraged!
 
-The entire command will be used to generate a random seed.
+The entire command will be used to generate a key for the hash function.
 The more gibberish there is, the harder it will be for an
 adversary to retroactively gain information about the
 internal state of the password generator.
@@ -135,12 +135,12 @@ algorithm_version = PythonPasswordUtility.SHA512_number
 ```python
 import PythonPasswordUtility
 
-password = PythonPasswordUtility.generate_password(length, random_seed, valid_chars)
+password = PythonPasswordUtility.generate_password(length, key, valid_chars)
 ```
 
 `length` is a nonnegative integer representing the number of characters in the generated password.
 
-`random_seed` is of type `bytes`. Its length cannot be zero. This value will be incorporated
+`key` is of type `bytes`. Its length cannot be zero. This value will be incorporated
 throughout the password generation process.
 
 `valid_chars` indicates which characters may appear in the output. It may be string of the same
