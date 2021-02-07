@@ -62,11 +62,15 @@ def generate_password(length,key,valid_chars):
             raise ValueError("valid_chars set may only contain type int")
         if value < 32 or value > 126:
             raise ValueError("valid_chars set may only contain values 32 to 126 inclusive")
+    char_map = create_character_map(valid_chars)
     # length is a nonzero integer
     # key is a bytes object
     # valid_chars is a set(int)
     # it indicates which characters are allowed to be in the
     # password, uses ascii codes
+    # char_map is a list of length 256
+    # it maps indicies to characters in valid_chars
+    # or to None
     # SHA512 has an output size of 64 bytes
     garbage = SHA512( b'initialize:' + key )
     counter = UniqueCounter()
@@ -91,12 +95,11 @@ def generate_password(length,key,valid_chars):
         # determing a value from the values before and after it
         # requires at least partical knowledge of garbage
         # now convert value to a usable character
-        while True:
-            value ^= secrets.randbelow(256)
-            if value in valid_chars:
-                break
+        value = char_map[value]
         # value is now a valid character
-        password.append(value)
+        # or None
+        if value is not None:
+            password.append(value)
     # convert to a string
     password = bytes(password).decode("UTF-8")
     return password
@@ -194,6 +197,24 @@ def generate_password_resolve_charstring(s):
     output = set(i)
     for n in e:
         output.discard(n)
+    return output
+
+def create_character_map(valid_chars):
+    # valid_chars is set(int)
+    # the ints have already been validated to be
+    # within the ASCII printable range
+    # we will return a list maping the ints
+    # 0-255 to the characters in the valid_chars set
+    # or to None
+    number_of_chars = len(valid_chars)
+    limit = 256 - (256 % number_of_chars)
+    # any numbers equal to or greater than
+    # limit will map to None
+    # this is to ensure an equal distribution of values
+    list_of_chars = list(valid_chars)
+    output = [None] * 256
+    for i in range(limit):
+        output[i] = list_of_chars[i % number_of_chars]
     return output
 
 def load_command_line_parameters():
