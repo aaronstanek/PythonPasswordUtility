@@ -1,1 +1,3 @@
 __pycache__/
+dist/
+src/passutil.egg-info/
