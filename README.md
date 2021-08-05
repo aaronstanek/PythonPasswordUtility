@@ -13,10 +13,16 @@ information about the rest of the password.
 This software has only been tested on Python version 3,
 it will refuse to load on other versions of Python.
 
+## Installation
+
+```
+pip install passutil
+```
+
 ## From the Command Line
 
 ```
-python3 pu.py <character sets> <password length> <random keyboard smashing, optional>
+python -m passutil <character sets> <password length> <random keyboard smashing, optional>
 ```
 
 ### Character sets
@@ -71,32 +77,32 @@ internal state of the password generator.
 ### Examples
 
 ```
-python3 pu.py uln 10 jti43gnnig4rng
+python -m passutil uln 10 jti43gnnig4rng
 X4TKHzTtWD
 ```
 
 ```
-python3 pu.py zr 15
+python -m passutil zr 15
 {T7:b[mZ}JEs0+A
 ```
 
 ```
-python3 pu.py a 20 skyscrapers are not potato
+python -m passutil a 20 skyscrapers are not potato
 ZW$OO%si`8ZvjPk'4.vX
 ```
 
 ```
-python3 pu.py n 4
+python -m passutil n 4
 8929
 ```
 
 ```
-python3 pu.py cps 9
+python -m passutil cps 9
 >,T^ )|"A
 ```
 
 ```
-python3 pu.py niabcd..ef 20 jito firoj43rfneiffk3k
+python -m passutil niabcd..ef 20 jito firoj43rfneiffk3k
 58480ddb2dc6a37be278
 ```
 
@@ -111,7 +117,7 @@ SHA-2 512 or SHA-3 512, with a preference for the latter.
 
 To determine which algorithm is being used:
 ```
-python3 pu.py -hash
+python -m passutil -hash
 ```
 
 ## Importing as a Package
@@ -125,17 +131,17 @@ A value of `2` indicates that SHA-2 512 will be used for hashing.
 A value of `3` indicates that SHA-3 512 will be used for hashing.
 
 ```python
-import PythonPasswordUtility
+import passutil
 
-algorithm_version = PythonPasswordUtility.SHA512_number
+algorithm_version = passutil.SHA512_number
 ```
 
 `generate_password` is a function.
 
 ```python
-import PythonPasswordUtility
+import passutil
 
-password = PythonPasswordUtility.generate_password(length, key, valid_chars)
+password = passutil.generate_password(length, key, valid_chars)
 ```
 
 `length` is a nonnegative integer representing the number of characters in the generated password.
