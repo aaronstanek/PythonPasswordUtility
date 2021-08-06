@@ -19,7 +19,7 @@ def load_command_line_parameters():
         length = int(sys.argv[2])
     except:
         raise TypeError("second command line argument should be an integer")
-    key = str(sys.argv).encode("UTF-8")
+    key = str(sys.argv)
     return valid_chars, length, key
 
 def main():
