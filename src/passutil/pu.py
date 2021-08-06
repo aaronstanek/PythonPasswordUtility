@@ -9,14 +9,10 @@ import time
 
 # try to use SHA-3 if possible
 
-try:
-    hashlib.sha3_512
-    # if SHA-3 is not supported
-    # then the line above will throw
-    # an exception
+if "sha3_512" in hashlib.algorithms_available:
     SHA512 = lambda x : hashlib.sha3_512(x).digest()
     SHA512_number = 3
-except:
+else:
     SHA512 = lambda x : hashlib.sha512(x).digest()
     SHA512_number = 2
 
