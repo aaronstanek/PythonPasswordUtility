@@ -57,17 +57,14 @@ def generate_password(length,key,valid_chars):
         raise TypeError("key parameter must be bytes")
     if len(key) < 1:
         raise ValueError("key parameter has minimum length 1")
-    if type(valid_chars) != set:
-        if type(valid_chars) != str:
-            raise TypeError("valid_chars parameter must be set or str")
+    if type(valid_chars) == str:
         valid_chars = resolve_charstring(valid_chars)
+    elif type(valid_chars) in [set,list,tuple]:
+        valid_chars = resolve_charset(valid_chars)
+    else:
+        raise TypeError("valid_chars parameter must be set or str")
     if len(valid_chars) < 1:
         raise ValueError("valid_chars parameter has minimum size 1")
-    for value in valid_chars:
-        if type(value) != int:
-            raise ValueError("valid_chars set may only contain type int")
-        if value < 32 or value > 126:
-            raise ValueError("valid_chars set may only contain values 32 to 126 inclusive")
     char_map = create_character_map(valid_chars)
     # length is a nonzero integer
     # key is a bytes object
