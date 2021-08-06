@@ -151,7 +151,7 @@ def normalize_valid_chars(x):
     elif type(x) in [set,list,tuple]:
         return resolve_charset(x)
     else:
-        raise TypeError("valid_chars parameter must be set or str")
+        raise TypeError("valid_chars parameter must be str, set, list, or tuple")
 
 def create_character_map(valid_chars):
     # valid_chars is set(int)
