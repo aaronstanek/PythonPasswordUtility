@@ -1,17 +1,45 @@
 # Python Password Utility
 
-Generates cryptographically random passwords of any desired length.
-Uses the time, Python's secrets module, and random keyboard smashing
-to produce passwords which are:
+**Cryptographically secure, easy-to-use, password generator**
 
-1. Hard to guess even if you know the time when the password was created
-and the internal state of Python's secrets module (very unlikely that an
-adversary would know either of these to sufficient precision anyway)
-2. Patternless. Knowing part of a password gives an adversary zero
-information about the rest of the password.
+Most password generators written in Python make use of Python's
+secrets module to generate random values.
+**Python Password Utility** goes a step further: it chains together
+a keyed version of the SHA-512 (or SHA3-512) hash function
+to create a password which is computationally infeasible to guess, even for someone
+who knows the internal state of the secrets module.
 
-This software has only been tested on Python version 3,
-it will refuse to load on other versions of Python.
+**Python Password Utility** can be run directly from the command line,
+or called through a Python API.
+
+This software has only been tested on Python 3.
+It will refuse to run on other versions of Python.
+
+## Description
+
+The algorithm operates in a loop; at each iteration of the loop one character
+is added to the password. The program takes the "output state" of the previous iteration,
+and hashes it alongside the current time, 64 random bytes from Python's secrets module,
+a unique counter value, and the key. The result of this operation is the "output state"
+that will be used by the next iteration of the loop.
+
+Each of the "output states" is then hashed again along with the time, a different 64 random bytes,
+and a different unique counter value. One byte is selected randomly
+from each of the resulting "candidate states"
+and is transformed into a password character.
+
+The power of this technique comes from the keyed hash functions. For an attacker to have any hope
+of guessing a password generated in this way, they must first know the key which was used.
+If the user creates a new somewhat-random key for each password, and then removes all record of the key,
+it eliminates any chance of retroactively recovering the password.
+This holds true even in the absurdly unlikely case that an attacker knows both the time when the
+password was generated and the internal state of Python's secrets module.
+
+Drawing randomness from multiple sources, and passing it through a SHA hash,
+guarantees that the resulting passwords will be patternless: knowing any part
+of the password will not give an attacker any information about the rest of the password.
+Passwords generated from **Python Password Utility** will have the maximum possible
+entropy for a password of their length and character set.
 
 ## Installation
 
