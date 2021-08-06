@@ -1,4 +1,4 @@
-generate_password_character_ranges = {
+character_ranges = {
     "c": list(range(65,91)),
     "l": list(range(97,123)),
     "n": list(range(48,58)),
@@ -21,9 +21,9 @@ generate_password_character_ranges = {
     "s": [32]
 }
 
-generate_password_character_ranges["u"] = generate_password_character_ranges["c"]
+character_ranges["u"] = character_ranges["c"]
 
-def generate_password_resolve_charstring(s):
+def resolve_charstring(s):
     # if a string is passed as valid_chars to
     # generate_password, it will need to be
     # resolved to a set
@@ -36,7 +36,7 @@ def generate_password_resolve_charstring(s):
             # and we will be dealing with individual characters
             se += s[i:]
             break
-        if s[i] in generate_password_character_ranges:
+        if s[i] in character_ranges:
             # it's one of the base character sets
             se += s[i]
         elif s[i] == "a":
@@ -86,7 +86,7 @@ def generate_password_resolve_charstring(s):
             active_array = e
         elif active_array is None:
             # we have already checked that the character is valid
-            i += generate_password_character_ranges[c]
+            i += character_ranges[c]
         else:
             value = ord(c)
             # must be ASCII printable
