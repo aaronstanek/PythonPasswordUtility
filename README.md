@@ -142,7 +142,7 @@ the SHA2-512 algorithm or the SHA3-512 algorithm.
 
 To determine which algorithm is being used:
 ```
-python -m passutil -hash
+python -m passutil hash
 ```
 
 ## Importing as a Package
