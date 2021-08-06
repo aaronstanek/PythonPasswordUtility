@@ -145,13 +145,12 @@ To determine which algorithm is being used:
 python -m passutil hash
 ```
 
-## Importing as a Package
+## Calling from Python
 
-Python Password Utility can be imported as a package.
-It provides two publicly accessible objects.
+**Python Password Utility** provides two publicly accessible objects.
 `SHA512_number` and `generate_password`.
 
-`SHA512_number` is a numerical constant.
+`SHA512_number` is an `int` constant.
 A value of `2` indicates that SHA-2 512 will be used for hashing.
 A value of `3` indicates that SHA-3 512 will be used for hashing.
 
@@ -169,13 +168,13 @@ import passutil
 password = passutil.generate_password(length, key, valid_chars)
 ```
 
-`length` is a nonnegative integer representing the number of characters in the generated password.
+`length` is a nonnegative `int` representing the number of characters in the generated password.
 
-`key` is of type `bytes`. Its length cannot be zero. This value will be incorporated
-throughout the password generation process.
+`key` is of type `bytes`. Its length cannot be zero. This value will be used to key the
+SHA hash function.
 
-`valid_chars` indicates which characters may appear in the output. It may be string of the same
-format as the character sets input of the command line mode. Or it may be a set of integers,
+`valid_chars` indicates which characters may appear in the output. It may be a `str` of the same
+format as the `<character set>` parameter of the command line mode. Or it may be a `set` of `int`,
 where the integers correspond to the ASCII values of the permitted characters.
 
-The function will output a UTF-8 encoded string.
+The function will output a `str` containing the password.
