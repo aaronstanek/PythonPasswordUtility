@@ -40,19 +40,19 @@ def time_hash():
 
 def generate_password(length,key,valid_chars):
     if type(length) != int:
-        raise TypeError("length must be int")
+        raise TypeError("length parameter must be int")
     if length < 0:
-        raise ValueError("length must be nonnegative")
+        raise ValueError("length parameter must be nonnegative")
     if type(key) != bytes:
-        raise TypeError("key must be bytes")
+        raise TypeError("key parameter must be bytes")
     if len(key) < 1:
-        raise ValueError("key has minimum length 1")
+        raise ValueError("key parameter has minimum length 1")
     if type(valid_chars) != set:
         if type(valid_chars) != str:
-            raise TypeError("valid_chars must be set or str")
+            raise TypeError("valid_chars parameter must be set or str")
         valid_chars = generate_password_resolve_charstring(valid_chars)
     if len(valid_chars) < 1:
-        raise ValueError("valid_chars has minimum size 1")
+        raise ValueError("valid_chars parameter has minimum size 1")
     for value in valid_chars:
         if type(value) != int:
             raise ValueError("valid_chars set may only contain type int")
