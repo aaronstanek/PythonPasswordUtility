@@ -121,6 +121,27 @@ def resolve_charstring(s):
         index += 1
     return output
 
+def resolve_charset(x):
+    # x is a list or set
+    # containing unkown types
+    # returns a set containing only int
+    # scans for invalid codepoints
+    output = set()
+    for element in x:
+        if type(element) == int:
+            pass
+        elif type(element) == str:
+            if len(element) != 1:
+                raise ValueError("valid_chars set input may not contain strings with lengths other than 1")
+            element = ord(element)
+        else:
+            raise TypeError("valid_chars set input may only contain int and str")
+        if element >= 32 and element <= 127:
+            output.add(element)
+        else:
+            raise Exception("valid_chars must be ASCII printable")
+    return output
+
 def create_character_map(valid_chars):
     # valid_chars is set(int)
     # the ints have already been validated to be
