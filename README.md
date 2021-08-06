@@ -138,7 +138,7 @@ python -m passutil niabcd..ef 20 jito firoj43rfneiffk3k
 ### Hashing Algorithms
 
 **Python Password Utility** generates passwords using either
-the SHA2-512 algorithm or the SHA3-512 algorithm.
+the SHA-2 512 algorithm or the SHA-3 512 algorithm.
 
 To determine which algorithm is being used:
 ```
