@@ -1,5 +1,5 @@
 character_ranges = {
-    "c": list(range(65,91)),
+    "u": list(range(65,91)),
     "l": list(range(97,123)),
     "n": list(range(48,58)),
     "p": list(map(ord,[
@@ -21,7 +21,7 @@ character_ranges = {
     "s": [32]
 }
 
-character_ranges["u"] = character_ranges["c"]
+character_ranges["c"] = character_ranges["u"]
 
 def resolve_charstring(s):
     # if a string is passed as valid_chars to
