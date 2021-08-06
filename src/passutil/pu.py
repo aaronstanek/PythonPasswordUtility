@@ -232,7 +232,9 @@ def create_character_map(valid_chars):
     return output
 
 def load_command_line_parameters():
-    if len(sys.argv) > 1:
+    if len(sys.argv) == 2:
+        if (sys.argv[1] == "help"):
+            raise Exception("Full documentation at: https://github.com/aaronstanek/PythonPasswordUtility")
         if (sys.argv[1] == "hash"):
             raise Exception("Using SHA-"+str(SHA512_number)+" 512")
     if len(sys.argv) < 3:
