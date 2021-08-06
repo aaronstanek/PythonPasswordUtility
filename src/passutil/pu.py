@@ -233,9 +233,12 @@ def load_command_line_parameters():
     return valid_chars, length, key
 
 def main():
-    valid_chars, length, key = load_command_line_parameters()
-    password = generate_password(length, key, valid_chars)
-    print(password)
+    try:
+        valid_chars, length, key = load_command_line_parameters()
+        password = generate_password(length, key, valid_chars)
+        print(password)
+    except Exception as ex:
+        print(ex)
 
 if __name__ == "__main__":
     main()
