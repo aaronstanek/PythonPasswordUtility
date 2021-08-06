@@ -17,11 +17,20 @@ else:
     SHA512_number = 2
 
 class UniqueCounter(object):
+    # this class is used to guarantee
+    # that the input to every hash
+    # is different
     def __init__(self):
+        # set the internal state to a random integer
+        # 0 <= n < 2**128
         self.n = 0
         for i in range(16):
             self.n = (self.n*256) + secrets.randbelow(256)
     def __call__(self):
+        # return the internal state
+        # as a decimal number,
+        # in a bytes format.
+        # increment the internal state.
         s = str(self.n) + ":"
         self.n += 1
         return s.encode("UTF-8")
@@ -71,25 +80,28 @@ def generate_password(length,key,valid_chars):
     garbage = SHA512( b'initialize:' + key )
     counter = UniqueCounter()
     for i in range(3):
+        # tumble the bits around
+        # but don't extract any password characters yet
         garbage = SHA512( b'prefix:' + counter() + garbage + time_hash() + secrets.token_bytes(64) + key )
     # garbage is a bytes object
     # predicting its value at this point in the program should be
     # nearly impossible
     password = [] # store it as a list of ascci values, convert to a string later
-    while len(password) < length:
+    while len(password) < length: # this is the password generation loop
         # update garbage
         garbage = SHA512( b'step:' + counter() + garbage + time_hash() + secrets.token_bytes(64) + key )
-        # use garbage to generate another sequence of byte which will not
+        # use garbage to generate another sequence of bytes which will not
         # have any effect on future values of garbage
         candidate = SHA512( b'output:' + counter() + garbage + time_hash() + secrets.token_bytes(64) )
-        # select a single value from that string of bytes
+        # candidate should have nothing in common with future or past values of garbage
+        # select a single value from those bytes
         value = candidate[secrets.randbelow(len(candidate))]
         # predicting value is very very difficult
         # determining garbage from value requires inverting
         # a SHA512 hash (a hash which isn't even known to
         # a potential adversary because it never leaves this function)
         # determing a value from the values before and after it
-        # requires at least partical knowledge of garbage
+        # requires at least partial knowledge of garbage
         # now convert value to a usable character
         value = char_map[value]
         # value is now a valid character
@@ -133,11 +145,16 @@ def generate_password_resolve_charstring(s):
     se = ""
     for i in range(len(s)):
         if s[i] == "i" or s[i] == "e":
+            # if we hit i or e
+            # then we are past the named character sets
+            # and we will be dealing with individual characters
             se += s[i:]
             break
         if s[i] in generate_password_character_ranges:
+            # it's one of the base character sets
             se += s[i]
         elif s[i] == "a":
+            # expand a or ar
             if i == len(s) - 1:
                 se += "clnps"
             elif s[i+1] == "r":
@@ -145,6 +162,7 @@ def generate_password_resolve_charstring(s):
             else:
                 se += "clnps"
         elif s[i] == "z":
+            # expand z or zr
             if i == len(s) - 1:
                 se += "clnp"
             elif s[i+1] == "r":
