@@ -109,7 +109,7 @@ def resolve_charstring(s):
                 mode = 2
             else:
                 codepoint = ord(s[index])
-                if codepoint >= 32 and codepoint <= 127:
+                if codepoint >= 32 and codepoint <= 126:
                     if mode == 1:
                         # i mode
                         output.add(codepoint)
@@ -136,7 +136,7 @@ def resolve_charset(x):
             element = ord(element)
         else:
             raise TypeError("valid_chars set input may only contain int and str")
-        if element >= 32 and element <= 127:
+        if element >= 32 and element <= 126:
             output.add(element)
         else:
             raise Exception("valid_chars must be ASCII printable")

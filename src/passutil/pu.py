@@ -6,7 +6,7 @@ if sys.version_info.major != 3:
 import hashlib
 import secrets
 import time
-from .chars import resolve_charstring, create_character_map
+from .chars import resolve_charstring, resolve_charset, create_character_map
 
 # try to use SHA-3 if possible
 
