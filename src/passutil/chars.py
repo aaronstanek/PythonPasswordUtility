@@ -122,7 +122,7 @@ def resolve_charstring(s):
     return output
 
 def resolve_charset(x):
-    # x is a list or set
+    # x is a set, list, or tuple
     # containing unkown types
     # returns a set containing only int
     # scans for invalid codepoints
