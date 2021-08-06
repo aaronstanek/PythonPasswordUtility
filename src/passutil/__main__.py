@@ -1,12 +1,17 @@
 import sys
 from .pu import SHA512_number, generate_password
+from .chars import normalize_valid_chars
 
 def load_command_line_parameters():
     if len(sys.argv) == 2:
-        if (sys.argv[1] == "help"):
+        if sys.argv[1] == "--help":
             raise Exception("Full documentation at: https://github.com/aaronstanek/PythonPasswordUtility")
-        if (sys.argv[1] == "hash"):
+        if sys.argv[1] == "--hash":
             raise Exception("Using SHA-"+str(SHA512_number)+" 512")
+    elif len(sys.argv) == 3:
+        if sys.argv[1] == "--size":
+            valid_chars = normalize_valid_chars(sys.argv[2])
+            raise Exception(str(len(valid_chars)))
     if len(sys.argv) < 3:
         raise ValueError("not enough command line parameters")
     valid_chars = sys.argv[1]
