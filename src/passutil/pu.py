@@ -216,8 +216,7 @@ def create_character_map(valid_chars):
 def load_command_line_parameters():
     if len(sys.argv) > 1:
         if (sys.argv[1] == "hash"):
-            print("Using SHA-"+str(SHA512_number)+" 512")
-            exit(0)
+            raise Exception("Using SHA-"+str(SHA512_number)+" 512")
     if len(sys.argv) < 3:
         raise ValueError("not enough command line parameters")
     valid_chars = sys.argv[1]
