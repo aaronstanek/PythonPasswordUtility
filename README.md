@@ -49,40 +49,52 @@ pip install passutil
 
 Note: Python 3 only
 
-## From the Command Line
+## Running from the Command Line
 
 ```
-python -m passutil <character sets> <password length> <random keyboard smashing, optional>
+python -m passutil <character set> <password length> <random keyboard smashing, optional>
 ```
+
+`<character set>` tells the program which characters are permitted in your password.
+`z` is generally the best option, unless there are restrictions on which
+characters may appear in the password.
+
+`<password length>` is the desired length of the password. This can be any nonnegative integer.
+
+`<random keyboard smashing>` is an optional parameter. The entire command is taken as the key
+for the hash function, so going wild on the keyboard after the `<password length>` will
+increase the randomness of the generated password.
 
 ### Character sets
 
-Character sets include:
-- `c` or `u` -> A-Z
-- `l` -> a-z
-- `n` -> 0-9
-- `p` -> ASCII punctuation: `~!@#$%^&*()-_=+[]{}\|;:'",<.>/?
+The supported character sets include:
+- `u` or `c`  -> uppercase/capital: **A-Z** (26 chars)
+- `l` -> lowercase: **a-z** (26 chars)
+- `n` -> numeral: **0-9** (10 chars)
+- `p` -> ASCII punctuation: **\`~\!@\#$%^&\*\(\)\-\_=\+\[\]\{\}\\|;:'",<\.>/?** (32 chars)
 - `r` -> subset of `p`, some platforms prohibit which punctuation
 characters may be used in a password, `r` omits those characters
-which are most likely to be banned, leaving: !@#$%&*()-_+[]{};:,.?
-- `s` -> the space character
+which are most likely to be banned, leaving: **\!@\#$%&\*\(\)\-\_\+\[\]\{\};:,\.?** (21 chars)
+- `s` -> the space character (1 char)
 
 When passed as a command line parameter, the character sets
 are concatenated in any order. Example:
 
-`nsl` will generate a password with numbers, spaces, and lowercase letters.
+`nsl` will generate a password with numerals, spaces, and lowercase letters.
 
-Character set shorthands:
-- `a` -> `clnps`, all the characters
-- `ar` -> `clnrs`, all the characters, except those which might be banned on some platforms
-- `z` -> `clnp`, all the characters, except spaces
-- `zr` -> `clnr`, all the characters, except spaces, and those which might be banned on some platforms
+It is also possible to reference multiple character sets at once using shorthands:
+- `a` = `ulnps`, all the characters (95 chars)
+- `ar` = `ulnrs`, all the characters, except those which are likely to be banned (84 chars)
+- `z` = `ulnp`, all the characters, except spaces (94 chars)
+- `zr` = `ulnr`, all the characters, except spaces, and those which are likely to be banned (83 chars)
 
-Individual characters my be included with `i` or excluded with `e`. Example:
+Individual characters may be included with `i` or excluded with `e`.
+
+Example:
 
 `nci;de74M` will include numerals, capital letters, `;`, and `d`. It will exclude `7`, `4`, and `M`.
 
-To include/exclude lowercase `i` or `e`, prefix them with `..`. Example:
+To include/exclude lowercase `i` or `e`, escape them with a `..` prefix. Example:
 
 `le..in` will include lowercase letters, but will exclude lowercase `i` and `n`.
 
@@ -90,19 +102,6 @@ To include/exclude lowercase `i` or `e`, prefix them with `..`. Example:
 
 Some characters may need to be enclosed in parenthesis or prefixed with an escape backslash.
 See: [https://www.w3schools.com/python/gloss_python_escape_characters.asp](https://www.w3schools.com/python/gloss_python_escape_characters.asp)
-
-### Password length
-
-The password length can be any nonnegative integer.
-
-### Random keyboard smashing
-
-Hitting a bunch of random keys after the password length is encouraged!
-
-The entire command will be used to generate a key for the hash function.
-The more gibberish there is, the harder it will be for an
-adversary to retroactively gain information about the
-internal state of the password generator.
 
 ### Examples
 
