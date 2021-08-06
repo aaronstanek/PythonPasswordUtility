@@ -47,6 +47,8 @@ entropy for a password of their length and character set.
 pip install passutil
 ```
 
+Note: Python 3 only
+
 ## From the Command Line
 
 ```
