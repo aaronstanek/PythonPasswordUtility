@@ -54,7 +54,10 @@ def generate_password(length,key,valid_chars):
     if length < 0:
         raise ValueError("length parameter must be nonnegative")
     if type(key) != bytes:
-        raise TypeError("key parameter must be bytes")
+        if type(key) == str:
+            key = key.encode("UTF-8")
+        else:
+            raise TypeError("key parameter must be bytes")
     if len(key) < 1:
         raise ValueError("key parameter has minimum length 1")
     valid_chars = normalize_valid_chars(valid_chars)
