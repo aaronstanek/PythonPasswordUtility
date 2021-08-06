@@ -137,12 +137,8 @@ python -m passutil niabcd..ef 20 jito firoj43rfneiffk3k
 
 ### Hashing Algorithms
 
-This module implements a cryptographic pseudo-random
-number generator based on
-the SHA family of hashing algorithms.
-
-This module is currently configured to use either
-SHA-2 512 or SHA-3 512, with a preference for the latter.
+**Python Password Utility** generates passwords using either
+the SHA2-512 algorithm or the SHA3-512 algorithm.
 
 To determine which algorithm is being used:
 ```
