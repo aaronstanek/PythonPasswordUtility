@@ -142,6 +142,17 @@ def resolve_charset(x):
             raise Exception("valid_chars must be ASCII printable")
     return output
 
+def normalize_valid_chars(x):
+    # x is any type
+    # if we can convert x to a valid_chars set
+    # then we will, otherwise throw an exception
+    if type(x) == str:
+        return resolve_charstring(x)
+    elif type(x) in [set,list,tuple]:
+        return resolve_charset(x)
+    else:
+        raise TypeError("valid_chars parameter must be set or str")
+
 def create_character_map(valid_chars):
     # valid_chars is set(int)
     # the ints have already been validated to be

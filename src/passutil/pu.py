@@ -6,7 +6,7 @@ if sys.version_info.major != 3:
 import hashlib
 import secrets
 import time
-from .chars import resolve_charstring, resolve_charset, create_character_map
+from .chars import normalize_valid_chars, create_character_map
 
 # try to use SHA-3 if possible
 
@@ -57,12 +57,7 @@ def generate_password(length,key,valid_chars):
         raise TypeError("key parameter must be bytes")
     if len(key) < 1:
         raise ValueError("key parameter has minimum length 1")
-    if type(valid_chars) == str:
-        valid_chars = resolve_charstring(valid_chars)
-    elif type(valid_chars) in [set,list,tuple]:
-        valid_chars = resolve_charset(valid_chars)
-    else:
-        raise TypeError("valid_chars parameter must be set or str")
+    valid_chars = normalize_valid_chars(valid_chars)
     if len(valid_chars) < 1:
         raise ValueError("valid_chars parameter has minimum size 1")
     char_map = create_character_map(valid_chars)
