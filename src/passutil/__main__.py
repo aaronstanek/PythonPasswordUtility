@@ -1,4 +1,5 @@
-from .pu import *
+import sys
+from .pu import SHA512_number, generate_password
 
 def load_command_line_parameters():
     if len(sys.argv) == 2:
