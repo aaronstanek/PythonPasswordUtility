@@ -1,6 +1,7 @@
 import unittest
 import sys
 from unittest import result
+from unittest.case import TestCase
 sys.path.append("../src")
 import passutil
 import passutil.pu as pu
@@ -30,31 +31,44 @@ class Test_character_ranges(unittest.TestCase):
         self.assertEqual(len(chars.character_ranges["H"]),16)
 
 class Test_resolve_charstring(unittest.TestCase):
-    def test_1(self):
+    def test_none(self):
         result = chars.resolve_charstring("")
         self.assertEqual(type(result),set)
         self.assertEqual(len(result),0)
-    def test_2(self):
+    def test_n(self):
         result = chars.resolve_charstring("n")
         self.assertEqual(type(result),set)
-        self.assertEqual(len(result),10)
-        self.assertEqual(result,set(chars.character_ranges["n"]))
-    def test_3(self):
+        target = set(range(48,58))
+        self.assertEqual(result,target)
+    def test_cn(self):
         result = chars.resolve_charstring("cn")
         self.assertEqual(type(result),set)
-        target = set(
-            chars.character_ranges["c"] + chars.character_ranges["n"]
-        )
+        target = set( list(range(65,91)) + list(range(48,58)) )
         self.assertEqual(result,target)
-    def test_4(self):
+    def test_a(self):
         result = chars.resolve_charstring("a")
         self.assertEqual(type(result),set)
         target = set(range(32,127))
         self.assertEqual(result,target)
-    def test_5(self):
-        result = chars.resolve_charstring("a")
+    def test_ar(self):
+        result = chars.resolve_charstring("ar")
         self.assertEqual(type(result),set)
         target = set(range(32,127))
+        for codepoint in chars.character_ranges["p"]:
+            if codepoint not in chars.character_ranges["r"]:
+                target.remove(codepoint)
+        self.assertEqual(result,target)
+    def test_z(self):
+        result = chars.resolve_charstring("z")
+        self.assertEqual(type(result),set)
+        target = set(range(32,127))
+        target.remove(32)
+        self.assertEqual(result,target)
+    def test_zr(self):
+        result = chars.resolve_charstring("zr")
+        self.assertEqual(type(result),set)
+        target = set(range(32,127))
+        target.remove(32)
         for codepoint in chars.character_ranges["p"]:
             if codepoint not in chars.character_ranges["r"]:
                 target.remove(codepoint)
