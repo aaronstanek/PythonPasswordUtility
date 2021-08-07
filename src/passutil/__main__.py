@@ -1,6 +1,6 @@
 import sys
 from .pu import SHA512_number, generate_password
-from .chars import normalize_valid_chars
+from .chars import charset_size
 
 def load_command_line_parameters():
     if len(sys.argv) < 2:
@@ -12,8 +12,7 @@ def load_command_line_parameters():
             raise Exception("Using SHA-"+str(SHA512_number)+" 512")
     elif len(sys.argv) == 3:
         if sys.argv[1] == "--size":
-            valid_chars = normalize_valid_chars(sys.argv[2])
-            raise Exception(str(len(valid_chars)))
+            raise Exception(str(charset_size(sys.argv[2])))
     if len(sys.argv) < 3:
         raise ValueError("not enough command line parameters")
     valid_chars = sys.argv[1]

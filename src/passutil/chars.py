@@ -153,6 +153,11 @@ def normalize_valid_chars(x):
     else:
         raise TypeError("valid_chars parameter must be str, set, list, or tuple")
 
+def charset_size(x):
+    # normalizes charset x
+    # then returns its size
+    return len(normalize_valid_chars(x))
+
 def create_character_map(valid_chars):
     # valid_chars is set(int)
     # the ints have already been validated to be
