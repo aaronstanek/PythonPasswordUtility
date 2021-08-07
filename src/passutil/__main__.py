@@ -3,6 +3,8 @@ from .pu import SHA512_number, generate_password
 from .chars import normalize_valid_chars
 
 def load_command_line_parameters():
+    if len(sys.argv) < 2:
+        raise Exception("Python Password Utility\nCryptographically secure, easy-to-use, password generator\nFull documentation at: https://github.com/aaronstanek/PythonPasswordUtility")
     if len(sys.argv) == 2:
         if sys.argv[1] == "--help":
             raise Exception("Full documentation at: https://github.com/aaronstanek/PythonPasswordUtility")
