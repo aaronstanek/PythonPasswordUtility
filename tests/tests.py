@@ -143,5 +143,31 @@ class Test_resolve_charstring(unittest.TestCase):
         with self.assertRaises(Exception):
             chars.resolve_charstring("ā")
 
+class Test_resolve_charset(unittest.TestCase):
+    def test_1(self):
+        a = [] # will become set
+        b = [] # stays as list
+        c = [] # will become tuple
+        for i in range(32,127):
+            a.append(i if i % 2 else chr(i))
+            b.append(i if i % 3 else chr(i))
+            c.append(i if i % 5 else chr(i))
+        a_in = set(a)
+        b_in = b
+        c_in = tuple(c)
+        a_out = chars.resolve_charset(a_in)
+        b_out = chars.resolve_charset(b_in)
+        c_out = chars.resolve_charset(c_in)
+        self.assertEqual(a_out,b_out)
+        self.assertEqual(b_out,c_out)
+        self.assertEqual(a_out,c_out)
+    def test_safe_failure(self):
+        with self.assertRaises(Exception):
+            chars.resolve_charset([None])
+        with self.assertRaises(Exception):
+            chars.resolve_charset(("hi","there"))
+        with self.assertRaises(Exception):
+            chars.resolve_charset({"ā"})
+
 if __name__ == '__main__':
     unittest.main()
