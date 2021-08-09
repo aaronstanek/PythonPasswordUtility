@@ -242,6 +242,23 @@ class Test_generate_password(unittest.TestCase):
             else:
                 counts[char] = 1
         self.assertEqual(len(counts),93)
+    def test_safe_failure(self):
+        with self.assertRaises(Exception):
+            passutil.generate_password("0","hi","iABC")
+        with self.assertRaises(Exception):
+            passutil.generate_password(-10,"hi","iABC")
+        with self.assertRaises(Exception):
+            passutil.generate_password(0,"","iABC")
+        with self.assertRaises(Exception):
+            passutil.generate_password(0,b'',"iABC")
+        with self.assertRaises(Exception):
+            passutil.generate_password(0,"hi",5)
+        with self.assertRaises(Exception):
+            passutil.generate_password(0,"hi","")
+        with self.assertRaises(Exception):
+            passutil.generate_password(0,"hi",set())
+        with self.assertRaises(Exception):
+            passutil.generate_password(0,"hi",[{65,66,67}])
 
 if __name__ == '__main__':
     unittest.main()
