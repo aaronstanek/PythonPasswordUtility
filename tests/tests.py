@@ -2,7 +2,6 @@ import unittest
 import sys
 sys.path.append("../src")
 import passutil
-import passutil.pu as pu
 import passutil.chars as chars
 
 class Test_character_ranges(unittest.TestCase):
@@ -259,6 +258,13 @@ class Test_generate_password(unittest.TestCase):
             passutil.generate_password(0,"hi",set())
         with self.assertRaises(Exception):
             passutil.generate_password(0,"hi",[{65,66,67}])
+
+class Test_API(unittest.TestCase):
+    def test_1(self):
+        self.assertEqual(type(passutil.SHA512_number),int)
+        self.assertTrue(passutil.SHA512_number in [2,3])
+        self.assertTrue(callable(passutil.generate_password))
+        self.assertTrue(callable(passutil.charset_size))
 
 if __name__ == '__main__':
     unittest.main()
