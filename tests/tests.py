@@ -1,5 +1,6 @@
 import unittest
 import sys
+from unittest import result
 from unittest.case import TestCase
 sys.path.append("../src")
 import passutil
@@ -168,6 +169,34 @@ class Test_resolve_charset(unittest.TestCase):
             chars.resolve_charset(("hi","there"))
         with self.assertRaises(Exception):
             chars.resolve_charset({"ā"})
+
+class Test_create_character_map(unittest.TestCase):
+    def test_1(self):
+        result = chars.create_character_map(chars.resolve_charstring("n"))
+        is_none = 0
+        counts = {}
+        for elem in result:
+            if elem is None:
+                is_none += 1
+            elif elem in counts:
+                counts[elem] += 1
+            else:
+                counts[elem] = 1
+        self.assertEqual(is_none,6)
+        self.assertTrue(all(map(lambda key: counts[key] == 25, counts)))
+    def test_2(self):
+        result = chars.create_character_map(chars.resolve_charstring("uneE5"))
+        is_none = 0
+        counts = {}
+        for elem in result:
+            if elem is None:
+                is_none += 1
+            elif elem in counts:
+                counts[elem] += 1
+            else:
+                counts[elem] = 1
+        self.assertEqual(is_none,18)
+        self.assertTrue(all(map(lambda key: counts[key] == 7, counts)))
 
 if __name__ == '__main__':
     unittest.main()
