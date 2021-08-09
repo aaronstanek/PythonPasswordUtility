@@ -1,7 +1,5 @@
 import unittest
 import sys
-from unittest import result
-from unittest.case import TestCase
 sys.path.append("../src")
 import passutil
 import passutil.pu as pu
@@ -197,6 +195,53 @@ class Test_create_character_map(unittest.TestCase):
                 counts[elem] = 1
         self.assertEqual(is_none,18)
         self.assertTrue(all(map(lambda key: counts[key] == 7, counts)))
+
+class Test_generate_password(unittest.TestCase):
+    def test_1(self):
+        result = passutil.generate_password(0,"hi","iABC")
+        self.assertEqual(type(result),str)
+        self.assertEqual(len(result),0)
+    def test_2(self):
+        result = passutil.generate_password(5000,b'hi',"c")
+        self.assertEqual(type(result),str)
+        self.assertEqual(len(result),5000)
+        found = [False] * 26
+        for char in result:
+            number = ord(char)
+            self.assertTrue(number >= 65 and number <= 90)
+            found[number - 65] = True
+        self.assertTrue(all(found))
+    def test_3(self):
+        result = passutil.generate_password(10,"tomato",{65,97})
+        self.assertEqual(type(result),str)
+        self.assertEqual(len(result),10)
+        for char in result:
+            number = ord(char)
+            self.assertTrue(number == 65 or number == 97)
+    def test_4(self):
+        result = passutil.generate_password(21,b'tomato',("h","W",32,126))
+        self.assertEqual(type(result),str)
+        self.assertEqual(len(result),21)
+        for char in result:
+            self.assertTrue(char in ["h","W"] or ord(char) in [32,126])
+    def test_5(self):
+        result = passutil.generate_password(1000,"password",["a","e","5","y"])
+        self.assertEqual(type(result),str)
+        self.assertEqual(len(result),1000)
+        for char in result:
+            self.assertTrue(char in ["a","e","5","y"])
+    def test_6(self):
+        result = passutil.generate_password(5000,b'password',"ae5y")
+        self.assertEqual(type(result),str)
+        self.assertEqual(len(result),5000)
+        counts = {}
+        for char in result:
+            self.assertFalse(char == "5" or char == "y")
+            if char in counts:
+                counts[char] += 1
+            else:
+                counts[char] = 1
+        self.assertEqual(len(counts),93)
 
 if __name__ == '__main__':
     unittest.main()
