@@ -1,6 +1,5 @@
 import unittest
 import sys
-from unittest import result
 from unittest.case import TestCase
 sys.path.append("../src")
 import passutil
@@ -124,6 +123,25 @@ class Test_resolve_charstring(unittest.TestCase):
         target.discard(ord("F"))
         # nui$#..e..ieF
         self.assertEqual(result,target)
+    def test_safe_failure(self):
+        with self.assertRaises(Exception):
+            chars.resolve_charstring("q")
+        with self.assertRaises(Exception):
+            chars.resolve_charstring("nb")
+        with self.assertRaises(Exception):
+            chars.resolve_charstring("ZR")
+        with self.assertRaises(Exception):
+            chars.resolve_charstring("ci..t")
+        with self.assertRaises(Exception):
+            chars.resolve_charstring("..i")
+        with self.assertRaises(Exception):
+            chars.resolve_charstring("le..e..I")
+        with self.assertRaises(Exception):
+            chars.resolve_charstring("unl..")
+        with self.assertRaises(Exception):
+            chars.resolve_charstring("niā")
+        with self.assertRaises(Exception):
+            chars.resolve_charstring("ā")
 
 if __name__ == '__main__':
     unittest.main()
