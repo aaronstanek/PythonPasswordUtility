@@ -74,14 +74,16 @@ def generate_password(length,key,valid_chars):
     # or to None
     # SHA512 has an output size of 64 bytes
     garbage = SHA512( b'initialize:' + key )
+    # garbage holds the state of the password generator
+    # it is called garbage because, while deterministicly generated,
+    # it should not have any sensible interpretation
     counter = UniqueCounter()
     for i in range(3):
         # tumble the bits around
         # but don't extract any password characters yet
         garbage = SHA512( b'prefix:' + counter() + garbage + time_hash() + secrets.token_bytes(64) + key )
-    # garbage is a bytes object
-    # predicting its value at this point in the program should be
-    # nearly impossible
+    # the value of garbage should be sufficiently random at this point,
+    # totally disconnected from the input values
     password = [] # store it as a list of ascci values, convert to a string later
     while len(password) < length: # this is the password generation loop
         # update garbage
@@ -105,5 +107,4 @@ def generate_password(length,key,valid_chars):
         if value is not None:
             password.append(value)
     # convert to a string
-    password = bytes(password).decode("UTF-8")
-    return password
+    return bytes(password).decode("UTF-8")
