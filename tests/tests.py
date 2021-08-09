@@ -73,6 +73,57 @@ class Test_resolve_charstring(unittest.TestCase):
             if codepoint not in chars.character_ranges["r"]:
                 target.remove(codepoint)
         self.assertEqual(result,target)
+    def test_Hi(self):
+        result = chars.resolve_charstring("Hig$")
+        self.assertEqual(type(result),set)
+        target = set(range(32,127))
+        target = set(chars.character_ranges["H"])
+        target.add(ord("g"))
+        target.add(ord("$"))
+        self.assertEqual(result,target)
+    def test_ne(self):
+        result = chars.resolve_charstring("ne85")
+        self.assertEqual(type(result),set)
+        target = set(chars.character_ranges["n"])
+        target.discard(ord("8"))
+        target.discard(ord("5"))
+        self.assertEqual(result,target)
+    def test_complex1(self):
+        result = chars.resolve_charstring("zre1234567890i$52e..i5")
+        self.assertEqual(type(result),set)
+        target = set(range(32,127))
+        # a
+        target.remove(32)
+        # z
+        for codepoint in chars.character_ranges["p"]:
+            if codepoint not in chars.character_ranges["r"]:
+                target.remove(codepoint)
+        # zr
+        for codepoint in range(48,58):
+            target.discard(codepoint)
+        # zre1234567890
+        target.add(ord("$"))
+        target.add(ord("5"))
+        target.add(ord("2"))
+        # zre1234567890i$52
+        target.discard(ord("i"))
+        target.discard(ord("5"))
+        # zre1234567890i$52e..i5
+        self.assertEqual(result,target)
+    def test_complex2(self):
+        result = chars.resolve_charstring("nui$#..e..ieFe")
+        target = set(range(48,58))
+        for codepoint in range(65,91):
+            target.add(codepoint)
+        # nu
+        target.add(ord("$"))
+        target.add(ord("#"))
+        target.add(ord("e"))
+        target.add(ord("i"))
+        # nui$#..e..i
+        target.discard(ord("F"))
+        # nui$#..e..ieF
+        self.assertEqual(result,target)
 
 if __name__ == '__main__':
     unittest.main()
