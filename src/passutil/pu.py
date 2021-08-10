@@ -43,8 +43,7 @@ def time_hash():
     # include 20 decimal points of the time
     # this will include sub-precision garbage
     t = t.encode("UTF-8")
-    t = SHA512(t)
-    return t
+    return SHA512(t)
 
 def generate_password(length,key,valid_chars):
     if type(length) != int:
