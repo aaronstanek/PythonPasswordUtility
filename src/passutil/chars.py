@@ -120,7 +120,7 @@ def resolve_charstring(s):
                         # e mode
                         output.discard(codepoint)
                 else:
-                    raise ValueError("valid_chars collection input may only contain int and str")
+                    raise ValueError("valid_chars values must correspond to ASCII printable characters")
         index += 1
     return output
 
