@@ -42,21 +42,33 @@ def resolve_charstring(s):
     # if a string is passed as valid_chars to
     # generate_password, it will need to be
     # resolved to a set
+    # we will iterate over s
+    # following the syntax rules for the this kind of charstring
+    # there may optionally be a header section, with named sets
+    # see character_ranges for dict of these
+    # after, there may be optional sections i and e
+    # i to include characters, e to exclude them
+    # to include/exclude the characters i or e
+    # they must be prefixed with ..
     output = set()
     mode = 0
-    # mode = 0 is the main part, before i or e
+    # mode = 0 is the header section, before i or e
     # mode = 1 is after the i token
     # mode = 2 is after the e token
     index = 0
     while index < len(s):
         if mode == 0:
             # mode = 0
-            # main section
+            # header section
             if s[index] in character_ranges:
+                # if this is a named charset
+                # then include all the values in its definition
                 for codepoint in character_ranges[s[index]]:
                     output.add(codepoint)
             elif s[index] == "a":
                 # we have a or ar
+                # this is a shorthand
+                # replace the shorthand with its definition
                 if index+1 < len(s):
                     if s[index+1] == "r":
                         # we have ar
@@ -69,6 +81,8 @@ def resolve_charstring(s):
                     output.add(codepoint)
             elif s[index] == "z":
                 # we have z or zr
+                # this is a shorthand
+                # replace the shorthand with its definition
                 if index+1 < len(s):
                     if s[index+1] == "r":
                         # we have zr
@@ -80,10 +94,15 @@ def resolve_charstring(s):
                 for codepoint in resolve_charstring("ulnp"):
                     output.add(codepoint)
             elif s[index] == "i":
+                # if we hit an i token,
+                # then we start an i section
                 mode = 1
             elif s[index] == "e":
+                # if we hit an e token,
+                # then we start an e section
                 mode = 2
             else:
+                # we expect a named character set, a shorthand, or i/e
                 raise ValueError("unexpected character in valid_chars")
         else:
             # mode = 1 or 2
@@ -91,24 +110,34 @@ def resolve_charstring(s):
             if index+1 < len(s):
                 if s[index] == "." and s[index+1] == ".":
                     # we have an escape sequence
+                    # ..i or ..e
                     if index+2 >= len(s):
                         raise ValueError("unexpected end-of-input in valid_chars after ..")
                     if s[index+2] == "i":
                         codepoint = 105
                     elif s[index+2] == "e":
-                        # switch to mode 2
                         codepoint = 101
                     else:
+                        # expected i or e after ..
                         raise ValueError("unexpected character in valid_chars after ..")
                     if mode == 1:
+                        # we are in an i section
+                        # add the escaped i or e
                         output.add(codepoint)
                     else:
+                        # we are in an e section
+                        # discard the escaped i or e
                         output.discard(codepoint)
                     index += 3
                     continue
+            # we do not have an escape sequence
             if s[index] == "i":
+                # if we hit an i token,
+                # then we start an i section
                 mode = 1
             elif s[index] == "e":
+                # if we hit an e token,
+                # then we start an e section
                 mode = 2
             else:
                 codepoint = ord(s[index])
