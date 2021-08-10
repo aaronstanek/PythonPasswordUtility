@@ -61,8 +61,8 @@ def resolve_charstring(s):
             # mode = 0
             # header section
             if s[index] in character_ranges:
-                # if this is a named charset
-                # then include all the values in its definition
+                # this is a named charset
+                # include all the values in its definition
                 for codepoint in character_ranges[s[index]]:
                     output.add(codepoint)
             elif s[index] == "a":
@@ -94,12 +94,12 @@ def resolve_charstring(s):
                 for codepoint in resolve_charstring("ulnp"):
                     output.add(codepoint)
             elif s[index] == "i":
-                # if we hit an i token,
-                # then we start an i section
+                # we hit an i token,
+                # start an i section
                 mode = 1
             elif s[index] == "e":
-                # if we hit an e token,
-                # then we start an e section
+                # we hit an e token,
+                # start an e section
                 mode = 2
             else:
                 # we expect a named character set, a shorthand, or i/e
