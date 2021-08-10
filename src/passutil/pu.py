@@ -1,7 +1,7 @@
 import sys
 
-if sys.version_info.major != 3:
-    raise Exception("Python Password Utility has only been tested on Python version 3. Behavior on over versions is not guaranteed.")
+if sys.version_info[0] != 3 or sys.version_info[1] < 6:
+    raise Exception("Python Password Utility requires Python 3, version 3.6 or later.")
 
 import hashlib
 import secrets
