@@ -197,13 +197,17 @@ def create_character_map(valid_chars):
     # we will return a list maping the ints
     # 0-255 to the characters in the valid_chars set
     # or to None
-    number_of_chars = len(valid_chars)
-    limit = 256 - (256 % number_of_chars)
-    # any numbers equal to or greater than
-    # limit will map to None
-    # this is to ensure an equal distribution of values
-    list_of_chars = list(valid_chars)
-    output = [None] * 256
-    for i in range(limit):
-        output[i] = list_of_chars[i % number_of_chars]
+    repetitions = 256 // len(valid_chars)
+    # repetitions is the number of times
+    # that each character in valid_chars
+    # will be repeated in output
+    output = []
+    for character in valid_chars:
+        output += [character] * repetitions
+    # len(output) - repetitions * len(valid_chars)
+    # will be less than len(valid_chars)
+    # we will fill in the remainder of output
+    # with None values to bring the length
+    # to 256
+    output += [None] * (256-len(output))
     return output
