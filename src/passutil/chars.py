@@ -1,3 +1,5 @@
+# character_ranges maps character set names
+# to their definitions
 character_ranges = {
     "u": list(range(65,91)),
     "l": list(range(97,123)),
@@ -33,6 +35,7 @@ character_ranges = {
     ]))
 }
 
+# c is a synonym of u
 character_ranges["c"] = character_ranges["u"]
 
 def resolve_charstring(s):
