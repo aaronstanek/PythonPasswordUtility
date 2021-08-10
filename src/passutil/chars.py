@@ -81,7 +81,7 @@ def resolve_charstring(s):
             elif s[index] == "e":
                 mode = 2
             else:
-                raise ValueError("Unexpected character in valid_chars")
+                raise ValueError("unexpected character in valid_chars")
         else:
             # mode = 1 or 2
             # i or e section
@@ -89,14 +89,14 @@ def resolve_charstring(s):
                 if s[index] == "." and s[index+1] == ".":
                     # we have an escape sequence
                     if index+2 >= len(s):
-                        raise("Unexpected end-of-input in valid_chars after ..")
+                        raise ValueError("unexpected end-of-input in valid_chars after ..")
                     if s[index+2] == "i":
                         codepoint = 105
                     elif s[index+2] == "e":
                         # switch to mode 2
                         codepoint = 101
                     else:
-                        raise Exception("Unexpected character in valid_chars after ..")
+                        raise ValueError("unexpected character in valid_chars after ..")
                     if mode == 1:
                         output.add(codepoint)
                     else:
@@ -117,7 +117,7 @@ def resolve_charstring(s):
                         # e mode
                         output.discard(codepoint)
                 else:
-                    raise Exception("valid_chars must be ASCII printable")
+                    raise ValueError("valid_chars collection input may only contain int and str")
         index += 1
     return output
 
@@ -132,14 +132,14 @@ def resolve_charset(x):
             pass
         elif type(element) == str:
             if len(element) != 1:
-                raise ValueError("valid_chars set input may not contain strings with lengths other than 1")
+                raise ValueError("valid_chars collection input may not contain strings with lengths other than 1")
             element = ord(element)
         else:
-            raise TypeError("valid_chars set input may only contain int and str")
+            raise TypeError("valid_chars collection input may only contain int and str")
         if element >= 32 and element <= 126:
             output.add(element)
         else:
-            raise Exception("valid_chars must be ASCII printable")
+            raise ValueError("valid_chars values must correspond to ASCII printable characters")
     return output
 
 def normalize_valid_chars(x):
