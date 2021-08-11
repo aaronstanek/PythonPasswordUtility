@@ -74,7 +74,7 @@ The basic character sets include:
 - `l` -> lowercase: **a-z** (26 chars)
 - `n` -> numeral: **0-9** (10 chars)
 - `p` -> ASCII punctuation: **\`~\!@\#$%^&\*\(\)\-\_=\+\[\]\{\}\\|;:'",<\.>/?** (32 chars)
-- `r` -> subset of `p`, some platforms prohibit which punctuation
+- `r` -> subset of `p`, some systems prohibit which punctuation
 characters may be used in a password, `r` omits those characters
 which are most likely to be banned, leaving: **\!@\#$%&\*\(\)\-\_\+\[\]\{\};:,\.?** (21 chars)
 - `s` -> the space character (1 char)
