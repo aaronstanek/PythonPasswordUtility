@@ -99,10 +99,21 @@ The output might look like: `$/:<"/\~(+#/=";-:^(*)+'?-`.
 python -m passutil p 25
 ```
 
-When passed as a command line parameter, the character sets
-are concatenated in any order. Example:
+If we want to use characters from multiple of these sets,
+we can perform a union on the sets simply by concatenating
+their names in the command.
 
-`nsl` will generate a password with numerals, spaces, and lowercase letters.
+**Example:**
+
+The command below will generate a password of length 10,
+containing numerals, spaces, and lowercase letters.
+It does this by combining the `n`, `s`, and `l` sets,
+to get the `nsl` set.
+The output might look like: `p ltaj0k3p`.
+
+```
+python -m passutil nsl 10
+```
 
 It is also possible to reference multiple character sets at once using shorthands:
 - `a` = `ulnps`, all the characters (95 chars)
