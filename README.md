@@ -83,6 +83,8 @@ which are most likely to be banned, leaving: **\!@\#$%&\*\(\)\-\_\+\[\]\{\};:,\.
 
 The command below will generate a password of length 4,
 containing only the numerals **0-9**.
+It does this by specifying the character set `n` for numerals,
+and the length `4`.
 The output might look like: `7014`.
 
 ```
@@ -93,13 +95,15 @@ python -m passutil n 4
 
 The command below will generate a password of length 25,
 containing only ASCII punctuation characters.
+It does this by specifying the character set `p` for punctuation,
+and the length `25`.
 The output might look like: `$/:<"/\~(+#/=";-:^(*)+'?-`.
 
 ```
 python -m passutil p 25
 ```
 
-If we want to use characters from multiple of these sets,
+If we want to use characters from multiple of character sets,
 we can perform a union on the sets simply by concatenating
 their names in the command.
 
