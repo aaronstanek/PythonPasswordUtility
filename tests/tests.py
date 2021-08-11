@@ -1,3 +1,6 @@
+# Copyright Aaron Stanek 2021
+# See LICENSE for more details
+
 import unittest
 import sys
 sys.path.append("../src")

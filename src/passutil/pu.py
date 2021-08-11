@@ -1,3 +1,6 @@
+# Copyright Aaron Stanek 2021
+# See LICENSE for more details
+
 import sys
 
 if sys.version_info[0] != 3 or sys.version_info[1] < 6:

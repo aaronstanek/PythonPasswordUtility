@@ -1,3 +1,6 @@
+# Copyright Aaron Stanek 2021
+# See LICENSE for more details
+
 # character_ranges maps character set names
 # to their definitions
 character_ranges = {
