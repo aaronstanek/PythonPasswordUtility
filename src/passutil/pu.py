@@ -65,9 +65,9 @@ def generate_password(length,key,valid_chars):
     if len(valid_chars) < 1:
         raise ValueError("valid_chars parameter has minimum size 1")
     char_map = create_character_map(valid_chars)
-    # length is a nonzero integer
-    # key is a bytes object
-    # valid_chars is a set(int)
+    # length is a nonnegative integer
+    # key is a nonempty bytes object
+    # valid_chars is a nonempty set(int)
     # it indicates which characters are allowed to be in the
     # password, uses ascii codes
     # char_map is a list of length 256
@@ -85,7 +85,7 @@ def generate_password(length,key,valid_chars):
         garbage = SHA512( b'prefix:' + counter() + garbage + time_hash() + secrets.token_bytes(64) + key )
     # the value of garbage should be sufficiently random at this point,
     # totally disconnected from the input values
-    password = [] # store it as a list of ascci values, convert to a string later
+    password = [] # store it as a list of ascii values, convert to a string later
     while len(password) < length: # this is the password generation loop
         # update garbage
         garbage = SHA512( b'step:' + counter() + garbage + time_hash() + secrets.token_bytes(64) + key )
@@ -103,7 +103,7 @@ def generate_password(length,key,valid_chars):
         # requires at least partial knowledge of garbage
         # now convert value to a usable character
         value = char_map[value]
-        # value is now a valid character
+        # value is now a valid character codepoint
         # or None
         if value is not None:
             password.append(value)
