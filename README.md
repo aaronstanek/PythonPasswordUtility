@@ -12,8 +12,8 @@ who knows the internal state of the secrets module.
 **Python Password Utility** can be run directly from the command line,
 or called through a Python API.
 
-This software has only been tested on Python 3.
-It will refuse to run on other versions of Python.
+This software requires Python 3.6 or later.
+Major versions after Python 3 are not supported.
 
 ## Description
 
