@@ -69,7 +69,7 @@ increase the randomness of the generated password.
 
 ### Character sets
 
-The basic character sets include:
+#### The basic character sets include:
 - `u` or `c`  -> uppercase/capital: **A-Z** (26 chars)
 - `l` -> lowercase: **a-z** (26 chars)
 - `n` -> numeral: **0-9** (10 chars)
@@ -103,9 +103,7 @@ The output might look like: `$/:<"/\~(+#/=";-:^(*)+'?-`.
 python -m passutil p 25
 ```
 
-If we want to use characters from multiple of character sets,
-we can perform a union on the sets simply by concatenating
-their names in the command.
+#### If we want to use characters from multiple of character sets, we can perform a union on the sets simply by concatenating their names in the command.
 
 **Example:**
 
@@ -119,7 +117,7 @@ The output might look like: `p ltaj0k3p`.
 python -m passutil nsl 10
 ```
 
-It is also possible to combine many character sets at once using shorthands:
+#### It is also possible to combine many character sets at once using shorthands:
 - `a` = `ulnps`, all the characters (95 chars)
 - `ar` = `ulnrs`, all the characters, except those which are likely to be banned (84 chars)
 - `z` = `ulnp`, all the characters, except spaces (94 chars)
@@ -154,7 +152,7 @@ The output may look like: `1A #T-x`.
 python -m passutil zrs 7
 ```
 
-Note: `zrs` = `szr` = `ar` = `ulnrs`
+Note: `zrs` = `szr` = `ulnrs` = `ar`
 
 However: `zsr` = `ulnpsr` = `a`
 
