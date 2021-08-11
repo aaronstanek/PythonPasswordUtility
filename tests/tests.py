@@ -176,6 +176,12 @@ class Test_resolve_charstring(unittest.TestCase):
             chars.resolve_charstring("unl..")
         with self.assertRaises(Exception):
             # we should expect only ASCII-printable characters
+            chars.resolve_charset(chr(31))
+        with self.assertRaises(Exception):
+            # we should expect only ASCII-printable characters
+            chars.resolve_charset(chr(127))
+        with self.assertRaises(Exception):
+            # we should expect only ASCII-printable characters
             chars.resolve_charstring("niā")
         with self.assertRaises(Exception):
             # we should expect only ASCII-printable characters
