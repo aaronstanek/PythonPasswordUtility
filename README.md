@@ -47,7 +47,9 @@ entropy for a password of their length and character set.
 pip install passutil
 ```
 
-Note: Python 3 only
+Note:
+This software requires Python 3.6 or later.
+Major versions of Python after Python 3 are not supported.
 
 ## Running from the Command Line
 
