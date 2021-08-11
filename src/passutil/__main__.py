@@ -10,7 +10,7 @@ def load_command_line_parameters():
         # user did not give any input
         # display a welcome message
         raise Exception(
-            "Python Password Utility 3.0.3\n"
+            "Python Password Utility 3.0.4\n"
             "Cryptographically secure, easy-to-use, password generator\n"
             "Full documentation at: https://github.com/aaronstanek/PythonPasswordUtility\n"
             "Copyright Aaron Stanek 2021")
