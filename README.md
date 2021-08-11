@@ -79,6 +79,26 @@ characters may be used in a password, `r` omits those characters
 which are most likely to be banned, leaving: **\!@\#$%&\*\(\)\-\_\+\[\]\{\};:,\.?** (21 chars)
 - `s` -> the space character (1 char)
 
+**Example:**
+
+The command below will generate a password of length 4,
+containing only the numerals **0-9**.
+The output might look like: `7014`.
+
+```
+python -m passutil n 4
+```
+
+**Example:**
+
+The command below will generate a password of length 25,
+containing only ASCII punctuation characters.
+The output might look like: `$/:<"/\~(+#/=";-:^(*)+'?-`.
+
+```
+python -m passutil p 25
+```
+
 When passed as a command line parameter, the character sets
 are concatenated in any order. Example:
 
