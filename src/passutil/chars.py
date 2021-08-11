@@ -186,7 +186,7 @@ def normalize_valid_chars(x):
     elif type(x) in [set,list,tuple]:
         return resolve_charset(x)
     else:
-        raise TypeError("valid_chars parameter must be str, set, list, or tuple")
+        raise TypeError("valid_chars parameter must be of type str, set, list, or tuple")
 
 def charset_size(x):
     # normalizes charset x
@@ -198,7 +198,7 @@ def create_character_map(valid_chars):
     # the ints have already been validated to be
     # within the ASCII printable range
     # we will return a list maping the ints
-    # 0-255 to the characters in the valid_chars set
+    # 0-255 to the character codepoints in the valid_chars set
     # or to None
     repetitions = 256 // len(valid_chars)
     # repetitions is the number of times
