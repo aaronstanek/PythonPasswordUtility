@@ -92,7 +92,6 @@ class Test_resolve_charstring(unittest.TestCase):
         # additional characters
         result = chars.resolve_charstring("Hig$")
         self.assertEqual(type(result),set)
-        target = set(range(32,127))
         target = set(chars.character_ranges["H"])
         target.add(ord("g"))
         target.add(ord("$"))
