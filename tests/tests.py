@@ -322,6 +322,9 @@ class Test_generate_password(unittest.TestCase):
             # above we test zero
             passutil.generate_password(-10,"hi","iABC")
         with self.assertRaises(Exception):
+            # key should be str or bytes
+            passutil.generate_password(0,[],"iABC")
+        with self.assertRaises(Exception):
             # key may not be empty
             passutil.generate_password(0,"","iABC")
         with self.assertRaises(Exception):
