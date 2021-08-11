@@ -119,11 +119,46 @@ The output might look like: `p ltaj0k3p`.
 python -m passutil nsl 10
 ```
 
-It is also possible to reference multiple character sets at once using shorthands:
+It is also possible to combine many character sets at once using shorthands:
 - `a` = `ulnps`, all the characters (95 chars)
 - `ar` = `ulnrs`, all the characters, except those which are likely to be banned (84 chars)
 - `z` = `ulnp`, all the characters, except spaces (94 chars)
 - `zr` = `ulnr`, all the characters, except spaces, and those which are likely to be banned (83 chars)
+
+**Example:**
+
+The command below will generate a password of length 16,
+any ASCII printable characters. It does this by using the `a`
+shorthand. The output may look like: `~VJ &FhC[_K8wu:+`.
+
+```
+python -m passutil a 16
+```
+
+Note that the above command is fully equivalent to:
+
+```
+python -m passutil ulnps 16
+```
+
+**Example:**
+
+The command below will generate a password of length 7,
+containing uppercase letters, lowercase letters, numerals,
+restricted punctuation characters, and spaces.
+It does this by combining the `zr` shorthand with the `s`
+character set.
+The output may look like: `1A #T-x`.
+
+```
+python -m passutil zrs 7
+```
+
+Note: `zrs` = `szr` = `ar` = `ulnrs`
+
+However: `zsr` = `ulnpsr` = `a`
+
+(`z` is expanded to its definition, the last `r` is ignored because it is already included in `p`)
 
 Individual characters may be included with `i` or excluded with `e`.
 
