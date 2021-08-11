@@ -9,7 +9,11 @@ def load_command_line_parameters():
     if len(sys.argv) < 2:
         # user did not give any input
         # display a welcome message
-        raise Exception("Python Password Utility\nCryptographically secure, easy-to-use, password generator\nFull documentation at: https://github.com/aaronstanek/PythonPasswordUtility")
+        raise Exception(
+            "Python Password Utility 3.0.3\n"
+            "Cryptographically secure, easy-to-use, password generator\n"
+            "Full documentation at: https://github.com/aaronstanek/PythonPasswordUtility\n"
+            "Copyright Aaron Stanek 2021")
     elif sys.argv[1] == "--hash":
         # user entered --hash
         # tell them which version of SHA512 we are using
