@@ -12,6 +12,7 @@ import time
 from .chars import normalize_valid_chars, create_character_map
 
 # try to use SHA-3 if possible
+# default to SHA-2 if you have to
 
 if "sha3_512" in hashlib.algorithms_available:
     SHA512 = lambda x : hashlib.sha3_512(x).digest()
