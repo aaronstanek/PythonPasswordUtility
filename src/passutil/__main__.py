@@ -10,10 +10,6 @@ def load_command_line_parameters():
         # user did not give any input
         # display a welcome message
         raise Exception("Python Password Utility\nCryptographically secure, easy-to-use, password generator\nFull documentation at: https://github.com/aaronstanek/PythonPasswordUtility")
-    elif sys.argv[1] == "--help":
-        # user entered --help
-        # direct them to documentation
-        raise Exception("Full documentation at: https://github.com/aaronstanek/PythonPasswordUtility")
     elif sys.argv[1] == "--hash":
         # user entered --hash
         # tell them which version of SHA512 we are using
