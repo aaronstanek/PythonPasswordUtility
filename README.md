@@ -69,7 +69,7 @@ increase the randomness of the generated password.
 
 ### Character sets
 
-The supported character sets include:
+The basic character sets include:
 - `u` or `c`  -> uppercase/capital: **A-Z** (26 chars)
 - `l` -> lowercase: **a-z** (26 chars)
 - `n` -> numeral: **0-9** (10 chars)
