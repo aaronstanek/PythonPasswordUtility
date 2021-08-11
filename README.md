@@ -154,6 +154,8 @@ python -m passutil zrs 7
 
 Note: `zrs` = `szr` = `ulnrs` = `ar`
 
+(`zr` is expanded to its definition, and then merged with `s`)
+
 However: `zsr` = `ulnpsr` = `a`
 
 (`z` is expanded to its definition, the last `r` is ignored because it is already included in `p`)
