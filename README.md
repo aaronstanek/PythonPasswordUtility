@@ -13,7 +13,7 @@ who knows the internal state of the secrets module.
 or called through a Python API.
 
 This software requires Python 3.6 or later.
-Major versions after Python 3 are not supported.
+Major versions of Python after Python 3 are not supported.
 
 ## Description
 
