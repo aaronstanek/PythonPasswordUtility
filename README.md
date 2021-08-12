@@ -192,6 +192,9 @@ The output may look like: `[W*[*;{(UM@QL,_$XR`.
 python -m passutil cpeCAT./ 18
 ```
 
+Some characters may need to be enclosed in parenthesis or prefixed with an escape backslash.
+See: [https://www.w3schools.com/python/gloss_python_escape_characters.asp](https://www.w3schools.com/python/gloss_python_escape_characters.asp)
+
 #### `i` and `e` may be used together
 
 **Example:**
@@ -217,9 +220,6 @@ To include/exclude lowercase `i` or `e`, escape them with a `..` prefix. Example
 `le..in` will include lowercase letters, but will exclude lowercase `i` and `n`.
 
 `pi..i..e` will include punctuation, `i`, and `e`.
-
-Some characters may need to be enclosed in parenthesis or prefixed with an escape backslash.
-See: [https://www.w3schools.com/python/gloss_python_escape_characters.asp](https://www.w3schools.com/python/gloss_python_escape_characters.asp)
 
 ### Examples
 
