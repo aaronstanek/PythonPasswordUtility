@@ -338,6 +338,33 @@ The correct character set will be produced with: `leb..ig`.
 **Example:**
 
 ```
+IN:  python -m passutil i..i 10
+OUT: iiiiiiiiii
+```
+
+Wait, what?
+
+The first `i` starts an inclusion.
+The escaped second `i` is the sole character
+that is included into the set.
+
+**Example:**
+
+```
+IN:  python -m passutil e..e 10
+OUT: valid_chars parameter has minimum size 1
+```
+
+Wait, what?
+
+The first `e` starts an exclusion.
+No characters are added into the character set.
+The program needs at least one valid character
+to be able to produce a password.
+
+**Example:**
+
+```
 IN:  python -m passutil ixiyey 10
 OUT: xxxxxxxxxx
 
