@@ -186,10 +186,28 @@ It does this by first declaring the base set: `cp`,
 indicating capitals and punctuation, then modifying it
 with `e`. The `CAT./` after the `e` signals that these
 characters may not appear in the password.
-The output may look like: `[W*[*;{(UM@QL,_$XR`
+The output may look like: `[W*[*;{(UM@QL,_$XR`.
 
 ```
 python -m passutil cpeCAT./ 18
+```
+
+#### `i` and `e` may be used together
+
+**Example:**
+
+The command below will generate a password of length 26,
+containing even numerals, `a` characters, and `m` characters.
+It does this by first declaring the base set: `n`,
+indicating numerals, then modifying it
+with `i` to include `a` and `m` characters.
+The following `e` will then exclude
+the `1`, `3`, `5`, `7`, and `9` characters from
+the password.
+The output may look like: `m6am6a264m6m4m884m40aa6ma2`.
+
+```
+python -m passutil niame13579 26
 ```
 
 `nci;de74M` will include numerals, capital letters, `;`, and `d`. It will exclude `7`, `4`, and `M`.
