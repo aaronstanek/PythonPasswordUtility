@@ -249,7 +249,50 @@ The output may look like: `97739e8`.
 python -m passutil ni..ee5 7
 ```
 
-### Examples
+### Advanced Examples
+
+**Example:**
+
+```
+IN:  python -m passutil li234 30
+OUT: ppkksclllnihfghmrmxqklvcleiroe
+```
+
+Where's the `234` the output?
+
+The character set input controls which
+characters may appear in the password,
+not which characters will appear in the password.
+
+**Example:**
+
+```
+IN:  python -m passutil iATCG 12
+OUT: CACCCCCGTCTG
+```
+
+Declaring a base set is not required.
+The character set input may begin with an `i`,
+followed by the characters to include.
+
+**Example:**
+
+```
+IN:  python -m passutil ipeck 10
+OUT: pppppppppp
+```
+
+What's going on here?
+I wanted a password using the letters `p`,
+`e`, `c`, and `k`, but I only get a bunch of `p` characters.
+
+Because the `e` is not escaped, it is treated as the beginning
+of an exclusion. `c` and `k` are excluded, leaving only `p`
+in the character set.
+
+To create a character set with the characters
+`p`, `e`, `c`, and `k`, the `e` needs to be
+escaped: `ip..eck`.
 
 ```
 python -m passutil uln 10 jti43gnnig4rng
