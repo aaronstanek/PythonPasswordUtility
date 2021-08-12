@@ -70,14 +70,14 @@ increase the randomness of the generated password.
 ### Character sets
 
 #### The basic character sets include:
-- `u` or `c`  -> uppercase/capital: **A-Z** (26 chars)
-- `l` -> lowercase: **a-z** (26 chars)
-- `n` -> numeral: **0-9** (10 chars)
-- `p` -> ASCII punctuation: **\`~\!@\#$%^&\*\(\)\-\_=\+\[\]\{\}\\|;:'",<\.>/?** (32 chars)
+- `u` or `c`  -> uppercase/capital: **A-Z** (26 characters)
+- `l` -> lowercase: **a-z** (26 characters)
+- `n` -> numeral: **0-9** (10 characters)
+- `p` -> ASCII punctuation: **\`~\!@\#$%^&\*\(\)\-\_=\+\[\]\{\}\\|;:'",<\.>/?** (32 characters)
 - `r` -> subset of `p`, some systems prohibit which punctuation
 characters may be used in a password, `r` omits those characters
-which are most likely to be banned, leaving: **\!@\#$%&\*\(\)\-\_\+\[\]\{\};:,\.?** (21 chars)
-- `s` -> the space character (1 char)
+which are most likely to be banned, leaving: **\!@\#$%&\*\(\)\-\_\+\[\]\{\};:,\.?** (21 characters)
+- `s` -> the space character (1 character)
 
 **Example:**
 
@@ -118,10 +118,10 @@ python -m passutil nsl 10
 ```
 
 #### It is also possible to combine many character sets at once using shorthands:
-- `a` = `ulnps`, all the characters (95 chars)
-- `ar` = `ulnrs`, all the characters, except those which are likely to be banned (84 chars)
-- `z` = `ulnp`, all the characters, except spaces (94 chars)
-- `zr` = `ulnr`, all the characters, except spaces, and those which are likely to be banned (83 chars)
+- `a` = `ulnps`, all the characters (95 characters)
+- `ar` = `ulnrs`, all the characters, except those which are likely to be banned (84 characters)
+- `z` = `ulnp`, all the characters, except spaces (94 characters)
+- `zr` = `ulnr`, all the characters, except spaces, and those which are likely to be banned (83 characters)
 
 **Example:**
 
