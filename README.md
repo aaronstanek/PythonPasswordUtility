@@ -82,7 +82,7 @@ which are most likely to be banned, leaving: **\!@\#$%&\*\(\)\-\_\+\[\]\{\};:,\.
 **Example:**
 
 The command below will generate a password of length 4,
-containing only the numerals **0-9**.
+only containing the numerals **0-9**.
 It does this by specifying the character set `n` for numerals,
 and the length `4`.
 The output might look like: `7014`.
@@ -94,7 +94,7 @@ python -m passutil n 4
 **Example:**
 
 The command below will generate a password of length 25,
-containing only ASCII punctuation characters.
+only containing ASCII punctuation characters.
 It does this by specifying the character set `p` for punctuation,
 and the length `25`.
 The output might look like: `$/:<"/\~(+#/=";-:^(*)+'?-`.
@@ -108,7 +108,7 @@ python -m passutil p 25
 **Example:**
 
 The command below will generate a password of length 10,
-containing numerals, spaces, and lowercase letters.
+only containing numerals, spaces, and lowercase letters.
 It does this by combining the `n`, `s`, and `l` sets,
 to get the `nsl` set.
 The output might look like: `p ltaj0k3p`.
@@ -142,7 +142,7 @@ python -m passutil ulnps 16
 **Example:**
 
 The command below will generate a password of length 7,
-containing uppercase letters, lowercase letters, numerals,
+only containing uppercase letters, lowercase letters, numerals,
 restricted punctuation characters, and spaces.
 It does this by combining the `zr` shorthand with the `s`
 character set.
@@ -165,7 +165,7 @@ However: `zsr` = `ulnpsr` = `a`
 **Example:**
 
 The command below will generate a password of length 20,
-containing numerals, as well as `A` characters and `b` characters.
+only containing numerals, `A` characters and `b` characters.
 It does this by first declaring the base set: `n`,
 indicating numerals, then modifying it
 with `i`. The `Ab` after the `i` signals that `A` characters
@@ -179,7 +179,7 @@ python -m passutil niAb 20
 **Example:**
 
 The command below will generate a password of length 18,
-containing capital letters, and ASCII punctuation.
+only containing capital letters and ASCII punctuation.
 However, it will not contain the characters `C`,
 `A`, `T`, `.`, or `/`.
 It does this by first declaring the base set: `cp`,
@@ -200,7 +200,7 @@ See: [https://www.w3schools.com/python/gloss_python_escape_characters.asp](https
 **Example:**
 
 The command below will generate a password of length 14,
-containing consonants in the English alphabet.
+only containing consonants in the English alphabet.
 It does this by first declaring the base set: `l`,
 indicating lowercase letters, then modifying it
 with `e` to exclude the vowel characters.
@@ -219,7 +219,7 @@ python -m passutil lea..e..iou 14
 **Example:**
 
 The command below will generate a password of length 26,
-containing even numerals, `a` characters, and `m` characters.
+only containing even numerals, `a` characters, and `m` characters.
 It does this by first declaring the base set: `n`,
 indicating numerals, then modifying it
 with `i` to include `a` and `m` characters.
@@ -235,7 +235,7 @@ python -m passutil niame13579 26
 **Example:**
 
 The command below will generate a password of length 7,
-containing numerals, as well as `e` characters,
+only containing numerals, `e` characters,
 and excluding the numeral `5`.
 It does this by first declaring the base set: `n`,
 indicating numerals, then modifying it with `i`
