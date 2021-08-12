@@ -166,13 +166,30 @@ However: `zsr` = `ulnpsr` = `a`
 
 The command below will generate a password of length 20,
 containing numerals, as well as `A` characters and `b` characters.
-It does this by first declaring the base set: `n`, then modifying it
+It does this by first declaring the base set: `n`,
+indicating numerals, then modifying it
 with `i`. The `Ab` after the `i` signals that `A` characters
 and `b` characters are allowed in the password.
 The output may look like: `24b749b71A1669586098`.
 
 ```
 python -m passutil niAb 20
+```
+
+**Example:**
+
+The command below will generate a password of length 18,
+containing capital letters, and ASCII punctuation.
+However, it will not contain the characters `C`,
+`A`, `T`, `.`, or `/`.
+It does this by first declaring the base set: `cp`,
+indicating capitals and punctuation, then modifying it
+with `e`. The `CAT./` after the `e` signals that these
+characters may not appear in the password.
+The output may look like: `[W*[*;{(UM@QL,_$XR`
+
+```
+python -m passutil cpeCAT./ 18
 ```
 
 `nci;de74M` will include numerals, capital letters, `;`, and `d`. It will exclude `7`, `4`, and `M`.
