@@ -200,7 +200,7 @@ See: [https://www.w3schools.com/python/gloss_python_escape_characters.asp](https
 **Example:**
 
 The command below will generate a password of length 14,
-containing non-vowel characters in the English alphabet.
+containing consonants in the English alphabet.
 It does this by first declaring the base set: `l`,
 indicating lowercase letters, then modifying it
 with `e` to exclude the vowel characters.
