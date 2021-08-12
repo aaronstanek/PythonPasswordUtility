@@ -195,6 +195,25 @@ python -m passutil cpeCAT./ 18
 Some characters may need to be enclosed in parenthesis or prefixed with an escape backslash.
 See: [https://www.w3schools.com/python/gloss_python_escape_characters.asp](https://www.w3schools.com/python/gloss_python_escape_characters.asp)
 
+#### To include/exclude lowercase `i` or `e`, escape them with a `..` prefix.
+
+**Example:**
+
+The command below will generate a password of length 14,
+containing non-vowel characters in the English alphabet.
+It does this by first declaring the base set: `l`,
+indicating lowercase letters, then modifying it
+with `e` to exclude the vowel characters.
+Notice that in the exclusion, `e` and `i`
+are prefixed with `..` to prevent them
+from being interpreted as the beginning
+of an exclusion or inclusion.
+The output may look like: `hgydslgfzpsqft`.
+
+```
+python -m passutil lea..e..iou 14
+```
+
 #### `i` and `e` may be used together
 
 **Example:**
@@ -213,13 +232,22 @@ The output may look like: `m6am6a264m6m4m884m40aa6ma2`.
 python -m passutil niame13579 26
 ```
 
-`nci;de74M` will include numerals, capital letters, `;`, and `d`. It will exclude `7`, `4`, and `M`.
+**Example:**
 
-To include/exclude lowercase `i` or `e`, escape them with a `..` prefix. Example:
+The command below will generate a password of length 7,
+containing numerals, as well as `e` characters,
+and excluding the numeral `5`.
+It does this by first declaring the base set: `n`,
+indicating numerals, then modifying it with `i`
+to include `e`. Note that the first `e` is escaped with a `..`,
+and is therefore included by the preceding `i`, while the second `e`
+is not escaped, and so signals the start of an exclusion.
+`5` is excluded by the second `e`.
+The output may look like: `97739e8`.
 
-`le..in` will include lowercase letters, but will exclude lowercase `i` and `n`.
-
-`pi..i..e` will include punctuation, `i`, and `e`.
+```
+python -m passutil ni..ee5 7
+```
 
 ### Examples
 
