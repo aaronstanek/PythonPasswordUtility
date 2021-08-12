@@ -324,6 +324,20 @@ escaped: `ip..eck`.
 **Example:**
 
 ```
+IN:  python -m passutil lebig 10
+OUT: wdaozsgput
+```
+
+Why is there a `g` in the output? I wanted to exclude
+the characters `b`, `i`, and `g`.
+
+Same thing as the previous example.
+`i` is not escaped.
+The correct character set will be produced with: `leb..ig`.
+
+**Example:**
+
+```
 IN:  python -m passutil ixiyey 10
 OUT: xxxxxxxxxx
 
