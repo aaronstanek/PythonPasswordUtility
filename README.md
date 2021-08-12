@@ -160,9 +160,20 @@ However: `zsr` = `ulnpsr` = `a`
 
 (`z` is expanded to its definition, the last `r` is ignored because it is already included in `p`)
 
-Individual characters may be included with `i` or excluded with `e`.
+#### Individual characters may be included with `i` or excluded with `e`.
 
-Example:
+**Example:**
+
+The command below will generate a password of length 20,
+containing numerals, as well as `A` characters and `b` characters.
+It does this by first declaring the base set: `n`, then modifying it
+with `i`. The `Ab` after the `i` signals that `A` characters
+and `b` characters are allowed in the password.
+The output may look like: `24b749b71A1669586098`.
+
+```
+python -m passutil niAb 20
+```
 
 `nci;de74M` will include numerals, capital letters, `;`, and `d`. It will exclude `7`, `4`, and `M`.
 
