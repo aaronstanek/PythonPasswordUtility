@@ -126,7 +126,7 @@ python -m passutil nsl 10
 **Example:**
 
 The command below will generate a password of length 16,
-containing only ASCII printable characters. It does this by using the `a`
+containing any of the ASCII printable characters. It does this by using the `a`
 shorthand. The output may look like: `~VJ &FhC[_K8wu:+`.
 
 ```
