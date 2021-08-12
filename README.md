@@ -258,7 +258,7 @@ IN:  python -m passutil li234 30
 OUT: ppkksclllnihfghmrmxqklvcleiroe
 ```
 
-Where's the `234` the output?
+Where's the `234` in the output?
 
 The character set input controls which
 characters may appear in the password,
