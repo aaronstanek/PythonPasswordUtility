@@ -267,6 +267,33 @@ not which characters will appear in the password.
 **Example:**
 
 ```
+IN:  python -m passutil aen 30
+OUT: x&deJD.PHG\]-5]0d\&!CX\wRwHyNl
+```
+
+I wanted to genetate a password using
+all the characters, except for numerals.
+What's that `5` doing in there?
+
+After an `i` or `e` starts an inclusion or exclusion,
+all subsequent characters (except for `i` and `e`)
+are interpreted literally.
+
+Before any inclusions or exclusions, `u`, `c`,
+`l`, `n`, `p`, `r`, and `s` refer to sets of characters.
+(Definitions given above)
+
+Within inclusions and exclusions, these same characters
+are interpreted as lowercase letters to be included or excluded.
+
+So, `aen` will generate a password using all available characters
+except for the lowercase letter `n`, which will be excluded.
+To generate a password using all the available characters
+except numerals, use `ulps` or more inconveniently `ae0123456789`.
+
+**Example:**
+
+```
 IN:  python -m passutil iATCG 12
 OUT: CACCCCCGTCTG
 ```
