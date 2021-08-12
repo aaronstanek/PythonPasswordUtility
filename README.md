@@ -294,6 +294,32 @@ To create a character set with the characters
 `p`, `e`, `c`, and `k`, the `e` needs to be
 escaped: `ip..eck`.
 
+**Example:**
+
+```
+IN:  python -m passutil ixiyey 10
+OUT: xxxxxxxxxx
+
+IN:  python -m passutil ixeyiy 10
+OUT: xyyyxyyyxy
+```
+
+What's going on here?
+Why do such similar inputs produce such different outputs?
+
+The generation of the character set operates from left to right.
+
+In the first case: `ix` will add `x` to the set.
+`iy` will add `y` to the set.
+But then, `ey` will remove `y` from the set,
+leaving only `x`.
+
+In the second case: `ix` will add `x` to the set.
+`ey` will try to remove `y` from the set, but as
+there is no `y` in the set, it will do nothing.
+Then, the program reaches `iy`, adding `y` to the set,
+resulting in a set containing both `x` and `y`.
+
 ```
 python -m passutil uln 10 jti43gnnig4rng
 X4TKHzTtWD
