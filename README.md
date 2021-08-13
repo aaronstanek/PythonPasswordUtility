@@ -426,10 +426,47 @@ python -m passutil --hash
 
 ## Calling from Python
 
-**Python Password Utility** provides two publicly accessible objects.
-`SHA512_number` and `generate_password`.
+**Python Password Utility** provides three publicly accessible objects.
+`generate_password`, `charset_size`, and `SHA512_number`.
 
-`SHA512_number` is an `int` constant.
+### generate_password
+
+`generate_password` is a function. As the name suggests,
+it generates passwords in the same way that the
+command line interface does.
+
+```python
+import passutil
+
+password = passutil.generate_password(length, key, valid_chars)
+```
+
+`length` is a nonnegative `int` representing the desired number of characters in the password.
+
+`key` is of type `bytes` or `str`. Its length cannot be zero. This value will be used to key the
+SHA hash function.
+For best results, use a different `key` value on each call to `generate_password`.
+
+`valid_chars` indicates which characters may appear in the output password. It may be a `str` of the same
+format as the `<valid_chars>` parameter in the command line interface.
+Alternatively, `valid_chars` may be a `set`, `list`, or `tuple` containing permitted
+characters, encoded as single-character strings.
+Alternatively, `valid_chars` may be a `set`, `list`, or `tuple` containing
+codepoints for permitted characters. Only ASCII printable characters,
+or their codepoints, may given in `valid_chars`. `valid_chars` may not correspond to
+an empty set.
+
+The function will output a `str` containing the password.
+
+### charset_size
+
+`charset_size` is the analog of `--size` in the command line interface.
+It is a function called in the following 
+
+### SHA512_number
+
+`SHA512_number` is the analog of `--hash` in the command line interface. 
+It is an `int` constant.
 A value of `2` indicates that SHA-2 512 will be used for hashing.
 A value of `3` indicates that SHA-3 512 will be used for hashing.
 
@@ -438,22 +475,3 @@ import passutil
 
 algorithm_version = passutil.SHA512_number
 ```
-
-`generate_password` is a function.
-
-```python
-import passutil
-
-password = passutil.generate_password(length, key, valid_chars)
-```
-
-`length` is a nonnegative `int` representing the number of characters in the generated password.
-
-`key` is of type `bytes`. Its length cannot be zero. This value will be used to key the
-SHA hash function.
-
-`valid_chars` indicates which characters may appear in the output. It may be a `str` of the same
-format as the `<character set>` parameter of the command line mode. Or it may be a `set` of `int`,
-where the integers correspond to the ASCII values of the permitted characters.
-
-The function will output a `str` containing the password.
