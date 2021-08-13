@@ -9,8 +9,9 @@ a keyed version of the SHA-512 (or SHA3-512) hash function
 to create a password which is computationally infeasible to guess, even for someone
 who knows the internal state of the secrets module.
 
-**Python Password Utility** can be run directly from the command line,
-or called through a Python API.
+**Python Password Utility** can be
+[run directly from the command line](#running-from-the-command-line),
+or [called through a Python API](#calling-from-python).
 
 This software requires Python 3.6 or later.
 Major versions of Python after Python 3 are not supported.
