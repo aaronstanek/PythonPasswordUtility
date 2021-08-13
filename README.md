@@ -391,36 +391,6 @@ there is no `y` in the set, it will do nothing.
 Then, the program reaches `iy`, adding `y` to the set,
 resulting in a set containing both `x` and `y`.
 
-```
-python -m passutil uln 10 jti43gnnig4rng
-X4TKHzTtWD
-```
-
-```
-python -m passutil zr 15
-{T7:b[mZ}JEs0+A
-```
-
-```
-python -m passutil a 20 skyscrapers are not potato
-ZW$OO%si`8ZvjPk'4.vX
-```
-
-```
-python -m passutil n 4
-8929
-```
-
-```
-python -m passutil cps 9
->,T^ )|"A
-```
-
-```
-python -m passutil niabcd..ef 20 jito firoj43rfneiffk3k
-58480ddb2dc6a37be278
-```
-
 ### Hashing Algorithms
 
 **Python Password Utility** generates passwords using either
