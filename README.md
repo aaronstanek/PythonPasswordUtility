@@ -422,6 +422,9 @@ python -m passutil --size <valid_chars>
 ```
 
 `<valid_chars>` has the same format as above.
+However, unlike when generating a password,
+`valid_chars` may correspond to an empty set.
+In such a case, `0` is returned.
 
 **Example:**
 
