@@ -54,17 +54,18 @@ Major versions of Python after Python 3 are not supported.
 ## Running from the Command Line
 
 ```
-python -m passutil <character set> <password length> <random keyboard smashing, optional>
+python -m passutil <valid_chars> <length> <random keyboard smashing, optional>
 ```
 
-`<character set>` tells the program which characters are permitted in your password.
+`<valid_chars>` tells the program which characters are permitted in your password.
+The format of this parameter is described below.
 `z` is generally the best option, unless there are restrictions on which
 characters may appear in the password.
 
-`<password length>` is the desired length of the password. This can be any nonnegative integer.
+`<length>` is the desired length of the password. This can be any nonnegative integer.
 
 `<random keyboard smashing>` is an optional parameter. The entire command is taken as the key
-for the hash function, so going wild on the keyboard after the `<password length>` will
+for the hash function, so going wild on the keyboard after the `<length>` will
 increase the randomness of the generated password.
 
 ### Character sets
@@ -262,7 +263,7 @@ OUT: ppkksclllnihfghmrmxqklvcleiroe
 
 Where's the `234` in the output?
 
-The character set input controls which
+The `<valid_chars>` parameter controls which
 characters may appear in the password,
 not which characters will appear in the password.
 
@@ -301,7 +302,7 @@ OUT: CACCCCCGTCTG
 ```
 
 Declaring a base set is not required.
-The character set input may begin with an `i`,
+The `<valid_chars>` parameter may begin with an `i`,
 followed by the characters to include.
 
 **Example:**
