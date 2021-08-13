@@ -518,7 +518,7 @@ Raises `TypeError` if `length` is not an `int`.
 Or if `key` is not a `bytes` or `str` object.
 Or if `valid_chars` is not a `str`, `set`,
 `list`, or `tuple`. Or if the contained elements are neither
-`str` or `int`.
+`str` nor `int`.
 
 Raises `ValueError` if `length` is negative.
 Or if `key` has length zero.
@@ -560,7 +560,7 @@ size = passutil.charset_size(valid_chars)
 It returns an `int`. 
 `valid_chars` has the same format as in `generate_password`.
 Unlike in `generate_password`, an input corresponding to an
-empty character set will not cause an exception; instead the function
+empty character set will not cause an exception; instead, the function
 will simply return `0`, indicating a character set of size zero.
 
 Raises `TypeError` if `valid_chars` is not a `str`, `set`,
