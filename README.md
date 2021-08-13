@@ -476,6 +476,18 @@ an empty set.
 
 The function will output a `str` containing the password.
 
+Raises `TypeError` if `length` is not an `int`.
+Or if `key` is not a `bytes` or `str` object.
+Or if `valid_chars` is not a `str`, `set`,
+`list`, or `tuple`. Or if the contained elements are neither
+`str` or `int`.
+
+Raises `ValueError` if `length` is negative.
+Or if `key` has length zero.
+Or if the format is incorrect.
+Or if non-ASCII-printable
+characters are given in `valid_chars`.
+
 **Example:**
 
 ```python
@@ -512,6 +524,13 @@ It returns an `int`.
 Unlike in `generate_password`, an input corresponding to an
 empty character set will not cause an exception; instead the function
 will simply return `0`, indicating a character set of size zero.
+
+Raises `TypeError` if `valid_chars` is not a `str`, `set`,
+`list`, or `tuple`. Or if the contained elements are neither
+`str` or `int`.
+
+Raises `ValueError` if the format is incorrect or if non-ASCII-printable
+characters are given in `valid_chars`.
 
 ### SHA512_number
 
