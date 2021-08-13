@@ -121,7 +121,7 @@ The output might look like: `$/:<"/\~(+#/=";-:^(*)+'?-`.
 python -m passutil p 25
 ```
 
-#### If we want to use characters from multiple of character sets, we can perform a union on the sets simply by concatenating their names in the command.
+#### If we want to use characters from multiple character sets, we can perform a union on the sets simply by concatenating their names in the command.
 
 **Example:**
 
