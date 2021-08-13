@@ -16,6 +16,20 @@ or [called through a Python API](#calling-from-python).
 This software requires Python 3.6 or later.
 Major versions of Python after Python 3 are not supported.
 
+### Index
+
+1. [Description](#description)
+1. [Installation](#installation)
+1. [Running from the Command Line](#running-from-the-command-line)
+    1. [Character Sets](#character-sets)
+    1. [Advanced Examples of Character Sets](#advanced-examples)
+    1. [Getting the Size of a Character Set](#getting-the-size-of-a-character-set)
+    1. [Determining which Hashing Algorithm is being used](#hashing-algorithms)
+1. [Calling from Python](#calling-from-python)
+    1. [generate_password](#generate_password)
+    1. [charset_size](#charset_size)
+    1. [SHA512_number](#sha512_number)
+
 ## Description
 
 The algorithm operates in a loop; at each iteration of the loop one character
@@ -69,7 +83,7 @@ characters may appear in the password.
 for the hash function, so going wild on the keyboard after the `<length>` will
 increase the randomness of the generated password.
 
-### Character sets
+### Character Sets
 
 #### The basic character sets include:
 - `u` or `c`  -> uppercase/capital: **A-Z** (26 characters)
@@ -392,7 +406,7 @@ there is no `y` in the set, it will do nothing.
 Then, the program reaches `iy`, adding `y` to the set,
 resulting in a set containing both `x` and `y`.
 
-### Getting the size of a character set
+### Getting the Size of a Character Set
 
 Sometimes it is useful to know how many characters
 are in a character set before the character set
