@@ -286,7 +286,7 @@ Before any inclusions or exclusions, `u`, `c`,
 (Definitions given above)
 
 Within inclusions and exclusions, these same characters
-are interpreted as lowercase letters to be included or excluded.
+are interpreted as letters to be included or excluded.
 
 So, `aen` will generate a password using all available characters
 except for the lowercase letter `n`, which will be excluded.
