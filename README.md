@@ -565,7 +565,7 @@ will simply return `0`, indicating a character set of size zero.
 
 Raises `TypeError` if `valid_chars` is not a `str`, `set`,
 `list`, or `tuple`. Or if the contained elements are neither
-`str` or `int`.
+`str` nor `int`.
 
 Raises `ValueError` if the format is incorrect or if non-ASCII-printable
 characters are given in `valid_chars`.
