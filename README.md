@@ -458,6 +458,27 @@ an empty set.
 
 The function will output a `str` containing the password.
 
+**Example:**
+
+```
+import passutil
+password = passutil.generate_password(4, "hello world", "n")
+print(type(password)) # str
+print(password) # 7014
+```
+
+This is analogous to the very first example given in this document.
+
+**Example:**
+
+```
+import passutil
+password = passutil.generate_password(12, b'python', {"A","T",67,71})
+# ASCII value 67 is "C", ASCII value 71 is "G"
+print(password) # CACCCCCGTCTG
+```
+This is analogous to one of the advanced example above.
+
 ### charset_size
 
 `charset_size` is the analog of `--size` in the command line interface.
