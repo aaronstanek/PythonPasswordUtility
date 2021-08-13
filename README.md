@@ -424,12 +424,12 @@ resulting in a set containing both `x` and `y`.
 
 **Example:**
 
-Adding psuedo-ramdomly generated keystrokes
+Adding pseudorandomly generated keystrokes
 (e.g. pretending to type without actually making words)
 after the core of the command can help increase the randomness
 of the generated password.
 It is recommended that users make use of this feature
-to fully utilize the capatities of this software.
+to fully utilize the capacities of this software.
 
 ```
 IN:  python -m passutil n 30 ju2ikntu i g rhtuirehtui3wh8r73hfsdnrrhtrthui
