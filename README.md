@@ -491,7 +491,7 @@ This is analogous to the very first example given in this document.
 
 ```python
 import passutil
-password = passutil.generate_password(12, b'blahblahblah', {"A","T",67,71})
+password = passutil.generate_password(12, b'\xf0\x9f\x98\x84', {"A","T",67,71})
 # ASCII value 67 is "C", ASCII value 71 is "G"
 print(password) # CACCCCCGTCTG
 ```
