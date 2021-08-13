@@ -473,16 +473,27 @@ This is analogous to the very first example given in this document.
 
 ```
 import passutil
-password = passutil.generate_password(12, b'python', {"A","T",67,71})
+password = passutil.generate_password(12, b'blahblahblah', {"A","T",67,71})
 # ASCII value 67 is "C", ASCII value 71 is "G"
 print(password) # CACCCCCGTCTG
 ```
-This is analogous to one of the advanced example above.
+This is analogous to one of the advanced examples above.
 
 ### charset_size
 
 `charset_size` is the analog of `--size` in the command line interface.
-It is a function called in the following 
+It is a function called in the following way:
+
+```
+import passutil
+
+size = passutil.charset_size(valid_chars)
+```
+It returns an `int`. 
+`valid_chars` has the same format as in `generate_password`.
+Unlike in `generate_password`, an input corresponding to an
+empty character set will not cause an exception; instead the function
+will simply return `0`, indicating a character set of size zero.
 
 ### SHA512_number
 
