@@ -282,7 +282,7 @@ all subsequent characters (except for `i` and `e`)
 are interpreted literally.
 
 Before any inclusions or exclusions, `u`, `c`,
-`l`, `n`, `p`, `r`, and `s` refer to sets of characters.
+`l`, `n`, `p`, `r`, `s`, `H`, and `h` refer to sets of characters.
 (Definitions given above)
 
 Within inclusions and exclusions, these same characters
