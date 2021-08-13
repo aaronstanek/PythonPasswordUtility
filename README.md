@@ -76,6 +76,9 @@ python -m passutil <valid_chars> <length> <random keyboard smashing, optional>
 The format of this parameter is described below.
 `z` is generally the best option, unless there are restrictions on which
 characters may appear in the password.
+This parameter may not correspond to an empty set;
+to be able to generate a password, at least one character must be
+allowed to exist in the password.
 
 `<length>` is the desired length of the password. This can be any nonnegative integer.
 
