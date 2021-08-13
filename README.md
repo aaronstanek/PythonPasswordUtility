@@ -78,6 +78,8 @@ increase the randomness of the generated password.
 characters may be used in a password, `r` omits those characters
 which are most likely to be banned, leaving: **\!@\#$%&\*\(\)\-\_\+\[\]\{\};:,\.?** (21 characters)
 - `s` -> the space character (1 character)
+- `H` -> uppercase hexadecimal characters: **0123456789ABCDEF** (16 characters)
+- `h` -> lowercase hexadecimal characters: **0123456789abcdef** (16 characters)
 
 **Example:**
 
