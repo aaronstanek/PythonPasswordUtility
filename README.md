@@ -442,9 +442,9 @@ python -m passutil --hash
 ## Calling from Python
 
 **Python Password Utility** provides three publicly accessible objects.
-[`generate_password`](#generate_password),
-[`charset_size`](#charset_size),
-and [`SHA512_number`](#sha512_number).
+- [generate_password](#generate_password)
+- [charset_size](#charset_size)
+- [SHA512_number](#sha512_number)
 
 ### generate_password
 
