@@ -289,7 +289,7 @@ IN:  python -m passutil aen 30
 OUT: x&deJD.PHG\]-5]0d\&!CX\wRwHyNl
 ```
 
-I wanted to genetate a password using
+I wanted to generate a password using
 all the characters, except for numerals.
 What's that `5` doing in there?
 
