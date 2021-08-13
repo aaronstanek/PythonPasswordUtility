@@ -79,6 +79,7 @@ characters may appear in the password.
 This parameter may not correspond to an empty set;
 to be able to generate a password, at least one character must be
 allowed to exist in the password.
+This parameter is case sensitive.
 
 `<length>` is the desired length of the password. This can be any nonnegative integer.
 
@@ -99,6 +100,9 @@ which are most likely to be banned, leaving: **\!@\#$%&\*\(\)\-\_\+\[\]\{\};:,\.
 - `s` -> the space character (1 character)
 - `H` -> uppercase hexadecimal characters: **0123456789ABCDEF** (16 characters)
 - `h` -> lowercase hexadecimal characters: **0123456789abcdef** (16 characters)
+
+The names of the basic character sets are case sensitive;
+they must all be lowercase, other than `H`.
 
 **Example:**
 
@@ -143,6 +147,8 @@ python -m passutil nsl 10
 - `ar` = `ulnrs`, all the characters, except those which are likely to be banned (84 characters)
 - `z` = `ulnp`, all the characters, except spaces (94 characters)
 - `zr` = `ulnr`, all the characters, except spaces, and those which are likely to be banned (83 characters)
+
+The shorthands are case sensitive; they must all be lowercase.
 
 **Example:**
 
@@ -197,6 +203,9 @@ The output may look like: `24b749b71A1669586098`.
 python -m passutil niAb 20
 ```
 
+This feature is case sensitive;
+using uppercase `I` would not work here.
+
 **Example:**
 
 The command below will generate a password of length 18,
@@ -212,6 +221,9 @@ The output may look like: `[W*[*;{(UM@QL,_$XR`.
 ```
 python -m passutil cpeCAT./ 18
 ```
+
+This feature is case sensitive;
+using uppercase `E` would not work here.
 
 Some characters may need to be enclosed in parenthesis or prefixed with an escape backslash.
 See: [https://www.shellscript.sh/escape.html](https://www.shellscript.sh/escape.html)
