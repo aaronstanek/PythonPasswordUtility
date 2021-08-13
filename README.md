@@ -410,6 +410,26 @@ there is no `y` in the set, it will do nothing.
 Then, the program reaches `iy`, adding `y` to the set,
 resulting in a set containing both `x` and `y`.
 
+**Example:**
+
+Adding psuedo-ramdomly generated keystrokes
+(e.g. pretending to type without actually making words)
+after the core of the command can help increase the randomness
+of the generated password.
+It is recommended that users make use of this feature
+to fully utilize the capatities of this software.
+
+```
+IN:  python -m passutil n 30 ju2ikntu i g rhtuirehtui3wh8r73hfsdnrrhtrthui
+OUT: 834040642994017327433140007821
+
+IN:  python -m passutil Hixyz 20 njfkern 4tio54n28r4 gmfd dginrekngtiosei8ufh
+OUT: 18C29C2A9Az472BC1D27
+
+IN:  python -m passutil zeI..i 5 min3w 12ji44tnf 4hNUFIWE 3U4ITR8H4RH283W7 fhu
+OUT: Ss#oL
+```
+
 ### Getting the Size of a Character Set
 
 Sometimes it is useful to know how many characters
