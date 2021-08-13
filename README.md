@@ -460,7 +460,7 @@ The function will output a `str` containing the password.
 
 **Example:**
 
-```
+```python
 import passutil
 password = passutil.generate_password(4, "hello world", "n")
 print(type(password)) # str
@@ -471,7 +471,7 @@ This is analogous to the very first example given in this document.
 
 **Example:**
 
-```
+```python
 import passutil
 password = passutil.generate_password(12, b'blahblahblah', {"A","T",67,71})
 # ASCII value 67 is "C", ASCII value 71 is "G"
@@ -484,7 +484,7 @@ This is analogous to one of the advanced examples above.
 `charset_size` is the analog of `--size` in the command line interface.
 It is a function called in the following way:
 
-```
+```python
 import passutil
 
 size = passutil.charset_size(valid_chars)
