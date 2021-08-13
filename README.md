@@ -391,6 +391,29 @@ there is no `y` in the set, it will do nothing.
 Then, the program reaches `iy`, adding `y` to the set,
 resulting in a set containing both `x` and `y`.
 
+### Getting the size of a character set
+
+Sometimes it is useful to know how many characters
+are in a character set before the character set
+is used. **Python Password Utility** allows
+one to do this from the command line.
+
+```
+python -m passutil --size <valid_chars>
+```
+
+`<valid_chars>` has the same format as above.
+
+**Example:**
+
+```
+IN:  python -m passutil --size une5
+OUT: 35
+```
+
+`u` has 26 characters. `n` has 10.
+`e5` removes one character, leaving 35.
+
 ### Hashing Algorithms
 
 **Python Password Utility** generates passwords using either
