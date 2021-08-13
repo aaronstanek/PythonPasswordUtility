@@ -509,7 +509,7 @@ Alternatively, `valid_chars` may be a `set`, `list`, or `tuple` containing permi
 characters, encoded as single-character strings.
 Alternatively, `valid_chars` may be a `set`, `list`, or `tuple` containing
 codepoints for permitted characters. Only ASCII printable characters,
-or their codepoints, may given in `valid_chars`. `valid_chars` may not correspond to
+or their codepoints, may exist in `valid_chars`. `valid_chars` may not correspond to
 an empty set.
 
 The function will output a `str` containing the password.
